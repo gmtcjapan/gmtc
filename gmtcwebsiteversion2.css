@@ -249,15 +249,18 @@ nav a.current{
     font-size:17px;
     width:40%;
     padding:100px;
+    flex: 1;             /* Allows text to take available space */
+    max-width: 600px;    /* Prevents text from being too wide */
   }
-  .gmtccodingpic{
-    width: 300px;  /* Change width as needed */
-    height: auto;   /* Maintain aspect ratio */
-    position: absolute;
-    right: 30px;    /* Adjust distance from the right edge */
-    top: 50%;       /* Position in the middle of the screen */
-    transform: translateY(-50%); /* Center vertically */
-  }
+.mission-container {
+    display: flex;        /* Enables flexbox layout */
+    align-items: center;  /* Aligns text and image vertically */
+    gap: 20px;           /* Adds space between text and image */
+}
+.gmtccodingpic {
+    width: 300px;        /* Adjust image size */
+    height: auto;        /* Maintain aspect ratio */
+}
   .meet{
     font-size:50px;
     text-align:center;
