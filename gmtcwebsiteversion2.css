@@ -258,7 +258,7 @@ nav a.current{
     gap: 20px;           /* Adds space between text and image */
 }
 .gmtccodingpic {
-    width: 300px;        /* Adjust image size */
+    width: 600px;        /* Adjust image size */
     height: auto;        /* Maintain aspect ratio */
 }
   .meet{
