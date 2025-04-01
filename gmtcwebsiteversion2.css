@@ -216,6 +216,14 @@ body {
     width:40%;
     padding:100px;
   }
+  .gmtccodingpic{
+    width: 200px;  /* Change width as needed */
+    height: auto;   /* Maintain aspect ratio */
+    position: absolute;
+    right: 20px;    /* Adjust distance from the right edge */
+    top: 50%;       /* Position in the middle of the screen */
+    transform: translateY(-50%); /* Center vertically */
+  }
   .meet{
     font-size:50px;
     text-align:center;
