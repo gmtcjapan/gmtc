@@ -147,6 +147,12 @@ nav a.current{
     font-size: 50px;
     text-align:center;
 }
+
+.text-center {
+    text-align: center;
+    font-size: 50px;
+}
+
 /* Green container */
 .about-section {
     background-color: #7fd9b4;  /* Green color */
