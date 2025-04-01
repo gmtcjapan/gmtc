@@ -251,22 +251,30 @@ nav a.current{
     text-align: center;
 
   }
-  .GMTCmissiontext{
-    font-size:17px;
-    width:40%;
-    padding:100px;
-    flex: 1;             /* Allows text to take available space */
-    max-width: 600px;    /* Prevents text from being too wide */
-  }
 .mission-container {
-    display: flex;        /* Enables flexbox layout */
-    align-items: center;  /* Aligns text and image vertically */
-    gap: 20px;           /* Adds space between text and image */
+    display: flex;       /* Enables flexbox layout */
+    align-items: center; /* Aligns text and image vertically */
+    justify-content: center; /* Centers content */
+    gap: 20px;          /* Adds spacing between text and image */
+    width: 100%;        /* Ensures full width usage */
+    padding: 50px 10%;  /* Adjust padding as needed */
 }
+
+.GMTCmissiontext {
+    flex: 1;            /* Makes text take up half of the space */
+    max-width: 50%;     /* Ensures it stays at half */
+    font-size: 17px;
+    padding: 20px;
+}
+
 .gmtccodingpic {
-    width: 600px;        /* Adjust image size */
-    height: auto;        /* Maintain aspect ratio */
+    flex: 1;            /* Makes image take up half of the space */
+    max-width: 50%;     /* Ensures it stays at half */
+    width: 100%;        /* Makes it responsive */
+    height: auto;       /* Maintains aspect ratio */
+    object-fit: cover;  /* Adjusts image to fit */
 }
+
   .meet{
     font-size:50px;
     text-align:center;
