@@ -251,7 +251,7 @@ nav a.current{
     padding:100px;
   }
   .gmtccodingpic{
-    width: 200px;  /* Change width as needed */
+    width: 100px;  /* Change width as needed */
     height: auto;   /* Maintain aspect ratio */
     position: absolute;
     right: 20px;    /* Adjust distance from the right edge */
