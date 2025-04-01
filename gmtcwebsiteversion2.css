@@ -251,10 +251,10 @@ nav a.current{
     padding:100px;
   }
   .gmtccodingpic{
-    width: 100px;  /* Change width as needed */
+    width: 300px;  /* Change width as needed */
     height: auto;   /* Maintain aspect ratio */
     position: absolute;
-    right: 20px;    /* Adjust distance from the right edge */
+    right: 30px;    /* Adjust distance from the right edge */
     top: 50%;       /* Position in the middle of the screen */
     transform: translateY(-50%); /* Center vertically */
   }
