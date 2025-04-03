@@ -369,7 +369,7 @@ font-weight: bold;
     grid-template-columns: repeat(2, 1fr); /* 2 columns */
     gap: 20px;
     padding: 40px;
-    max-width: 1000px;
+    max-width: 900px;
     margin: auto;
 }
 
@@ -379,6 +379,13 @@ font-weight: bold;
     border-radius: 10px;
     text-align: center;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    border: 2px solid #ddd; /* This adds a box around each project */
+    transition: transform 0.2s ease-in-out;
+}
+
+.project-box:hover {
+    transform: translateY(-5px);
+    border-color: #007bff; /* Highlight on hover */
 }
 
 .project-img {
@@ -386,6 +393,7 @@ font-weight: bold;
     height: 150px;
     background-color: lightgray; /* Placeholder */
     border-radius: 10px;
+    margin-bottom: 10px;
 }
 
 .learn-more-btn {
@@ -402,3 +410,9 @@ font-weight: bold;
     background: #0056b3;
 }
 
+/* Responsive Design for Mobile */
+@media screen and (max-width: 768px) {
+    .projects-container {
+        grid-template-columns: 1fr; /* Stack in 1 column on smaller screens */
+    }
+}
