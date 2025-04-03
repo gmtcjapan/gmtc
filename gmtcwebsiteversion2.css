@@ -416,3 +416,21 @@ font-weight: bold;
         grid-template-columns: 1fr; /* Stack in 1 column on smaller screens */
     }
 }
+
+/*自己紹介ノートボタン */
+.intro-button {
+    display: inline-block;
+    padding: 10px 20px;
+    border: 2px solid #0044cc;
+    border-radius: 25px;
+    color: #0044cc;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.intro-button:hover {
+    background-color: #0044cc;
+    color: white;
+}
+
