@@ -15,6 +15,7 @@ nav {
     position: fixed;  /* Fixes navbar at top */
     top: 0;           /* stays at the top */
     left: 0;
+    background-color: white;
     width: 100%;      /* Stretches across the full width */
     z-index: 1000;    /* Ensures it stays above other elements */
     padding: 10px 0;  /* Adds some spacing */
