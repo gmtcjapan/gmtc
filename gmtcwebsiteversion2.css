@@ -9,11 +9,16 @@ body {
     line-height: 1.6;
     background-color: #f9f9f9;
 }
-
-nav{
+nav {
     text-align: center;
+    position: fixed;  /* Fixes navbar at top */
+    top: 0;           /* stays at the top */
+    left: 0;
+    width: 100%;      /* Stretches across the full width */
+    z-index: 1000;    /* Ensures it stays above other elements */
+    padding: 10px 0;  /* Adds some spacing */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow */
 }
-
 nav ul{
     margin: 0 ;
     padding: 0 ;
