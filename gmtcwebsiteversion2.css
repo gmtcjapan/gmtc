@@ -286,46 +286,36 @@ nav a.current{
     font-size:50px;
     text-align:center;
   }
-  .Hanano {
+.Hanano, .Ryuma, .teammember {
     background-color: #71BFA0;
     border-radius: 10px;
-    width: 250px;
-    padding: 15px;
+    width: 300px; /* Increase width */
+    padding: 20px; /* Increase padding to make the boxes larger */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     text-align: center;
+    margin: 10px; /* Add margin to space them out */
 }
 
-.Ryuma {
-    background-color: #71BFA0;
-    border-radius: 10px;
-    width: 250px;
-    padding: 15px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    text-align: center;
-}
-.Hname{
+.Hname {
     font-weight: bold;
-    font-size: large;
+    font-size: larger; /* Adjust font size */
 }
+
 .team-container {
     display: flex;
-    flex-direction: row; /* Arrange elements in a row */
-    justify-content: space-around; /* Space them evenly */
-    flex-wrap: wrap; /* Wrap elements if the screen is too small */
-    gap: 0px; /* Space between columns */
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px; /* Increase the space between the team members */
 }
 
-.teammember {
-    background-color: #71BFA0;
-    border-radius: 10px;
-    width: 250px;
-    padding: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    flex: 1; 
-    max-width: 300px; /* Prevents stretching */
+.socials a {
+    display: inline-block;
+    margin-top: 10px;
+    text-decoration: none;
+    color: #000;
+    font-weight: bold;
 }
-
 .socials a {
 display: inline-block;
 margin-top: 10px;
