@@ -8,7 +8,7 @@ body {
     padding: 0;
     line-height: 1.6;
     background-color: #f9f9f9;
-    padding-top: 60px; /* space for nav bar height*/
+    padding-top: 65px; /* space for nav bar height*/
 }
 nav {
     text-align: center;
