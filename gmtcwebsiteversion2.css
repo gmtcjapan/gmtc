@@ -266,6 +266,25 @@ nav a.current{
     width: 100%;        /* Ensures full width usage */
     padding: 50px 10%;  /* Adjust padding as needed */
 }
+.team-container {
+    display: flex;                 
+    justify-content: space-between;  /* Spaces the items out */
+    align-items: center;            /* Vertically aligns items */
+    gap: 20px;                      /* Adds some space between the mission text and image */
+}
+
+.mission-text {
+    flex: 1;                       
+    max-width: 50%;           
+
+.gmtccodingpic {
+    flex: 1;                        /* Image takes up remaining space */
+    max-width: 50%;                  /* Keeps it at half width */
+    width: 100%;                     /* Responsive */
+    height: auto;                    /* Maintain aspect ratio */
+    object-fit: cover;               /* Ensures the image fits correctly */
+}
+
 
 .GMTCmissiontext {
     flex: 1;            /* Makes text take up half of the space */
@@ -273,15 +292,6 @@ nav a.current{
     font-size: 17px;
     padding: 20px;
 }
-
-.gmtccodingpic {
-    flex: 1;            /* Makes image take up half of the space */
-    max-width: 50%;     /* Ensures it stays at half */
-    width: 100%;        /* Makes it responsive */
-    height: auto;       /* Maintains aspect ratio */
-    object-fit: cover;  /* Adjusts image to fit */
-}
-
   .meet{
     font-size:50px;
     text-align:center;
@@ -299,14 +309,6 @@ nav a.current{
 .Hname {
     font-weight: bold;
     font-size: larger; /* Adjust font size */
-}
-
-.team-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    gap: 20px; /* Increase the space between the team members */
 }
 
 .socials a {
