@@ -252,7 +252,6 @@ nav a.current{
   .linkedin-button:hover svg {
     fill: #fff;
   }
-  
   .ourmission{
     font-size: 50px;
     text-align: center;
@@ -266,31 +265,6 @@ nav a.current{
     width: 100%;        /* Ensures full width usage */
     padding: 50px 10%;  /* Adjust padding as needed */
 }
-.team-container {
-    display: flex;
-    flex-direction: row; /* Arrange elements in a row */
-    justify-content: space-around; /* Space them evenly */
-    flex-wrap: wrap; /* Wrap elements if the screen is too small */
-    gap: 0px; /* Space between columns */
-}
-
-.mission-text {
-    background-color: #71BFA0;
-    border-radius: 10px;
-    padding: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    flex: 1;
-    max-width: 50%;  /* Limit width of mission text */
-}
-
-.gmtccodingpic {
-    flex: 1;
-    max-width: 50%;   /* Limit width of image */
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-}
 
 .GMTCmissiontext {
     flex: 1;            /* Makes text take up half of the space */
@@ -298,6 +272,15 @@ nav a.current{
     font-size: 17px;
     padding: 20px;
 }
+
+.gmtccodingpic {
+    flex: 1;            /* Makes image take up half of the space */
+    max-width: 50%;     /* Ensures it stays at half */
+    width: 100%;        /* Makes it responsive */
+    height: auto;       /* Maintains aspect ratio */
+    object-fit: cover;  /* Adjusts image to fit */
+}
+
   .meet{
     font-size:50px;
     text-align:center;
