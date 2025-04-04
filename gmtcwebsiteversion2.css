@@ -430,30 +430,28 @@ font-weight: bold;
     color: white;
 }
 
-/* Specific skill colors boxes*/
+.skills {
+  margin-top: 10px;
+}
+
+.skill {
+  display: inline-block;
+  padding: 5px 10px;
+  margin: 4px 4px 0 0;
+  border-radius: 12px;
+  font-size: 0.85em;
+  font-weight: 600;
+  color: white;
+}
+
 .skill.html {
-    background-color: #e34c26;
+  background-color: #e44d26;
 }
 
 .skill.css {
-    background-color: #264de4;
-}
-
-.skill.js {
-    background-color: #f0db4f;
-    color: #000;
+  background-color: #264de4;
 }
 
 .skill.cpp {
-    background-color: #00599C;
+  background-color: #00599c;
 }
-
-.skill.python {
-    background-color: #3776AB;
-}
-
-.skill.unity {
-    background-color: #000000;
-}
-
-
