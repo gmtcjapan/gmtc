@@ -1,7 +1,13 @@
 *{
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
-
+html, body {
+    height: auto;
+    min-height: 100%;
+    overflow-y: auto;
+    margin: 0;
+    padding: 0;
+}
 
 body {
     font-family: Arial, sans-serif;
