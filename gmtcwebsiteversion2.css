@@ -23,13 +23,6 @@
       animation: fadeIn 2s ease-out;
     }
 
-    .turtle {
-      width: 180px;
-      position: absolute;
-      left: -200px;
-      animation: swim 4s ease-out forwards;
-    }
-
     .logo {
       width: 100px;
       opacity: 0;
@@ -42,11 +35,6 @@
       opacity: 0;
       animation: fadeInTagline 2s ease 3.5s forwards;
       text-align: center;
-    }
-
-    @keyframes swim {
-      0% { left: -200px; top: 40%; }
-      100% { left: 50%; transform: translateX(-50%); top: 20%; }
     }
 
     @keyframes fadeInLogo {
