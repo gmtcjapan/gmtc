@@ -159,6 +159,7 @@ nav a.current{
 .text-center {
     text-align: center;
     font-size: 50px;
+    font-color: #000000 /*white color*/
 }
 
 /* Green container */
