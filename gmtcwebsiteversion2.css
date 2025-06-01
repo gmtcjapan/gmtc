@@ -293,32 +293,33 @@ nav a.current{
 
   }
 .mission-container {
-    display: flex;       /* Enables flexbox layout */
-    align-items: center; /* Aligns text and image vertically */
-    justify-content: center; /* Centers content */
-    gap: 20px;          /* Adds spacing between text and image */
-    width: 100%;        /* Ensures full width usage */
-    padding: 50px 10%;  /* Adjust padding as needed */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    width: 100%;
+    padding: 50px 10%;
+    flex-wrap: wrap;  /*lets it go vertical on small screens */
 }
 
 .GMTCmissiontext {
-    flex: 1;            /* Makes text take up half of the space */
-    max-width: 40%;     /* Ensures it stays at half */
+    flex: 1;
+    max-width: 50%;
     font-size: 17px;
     padding: 20px;
-    margin-left: 40px
+    margin-left: 0;         /* Remove or reduce if too wide */
 }
 
+
 .gmtccodingpic {
-    flex: 1;            
-    max-width: 40%;     
-    width: 100%;        
-    height: auto;       
-    object-fit: cover;  
+    flex: 1;
+    max-width: 45%;          /* Slightly reduce to fit better next to text */
+    height: auto;
+    object-fit: cover;
     margin-top: 20px;
-    margin-left: auto;   /* This pushes the image to the right */
-    margin-right: 40px;
-    display: block;      /* Proper for img, prevents inline behavior */
+    margin-left: auto;
+    margin-right: 0;
+    display: block;
 }
 
 
