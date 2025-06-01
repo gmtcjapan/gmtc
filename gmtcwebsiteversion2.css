@@ -294,12 +294,12 @@ nav a.current{
   }
 .mission-container {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
-    gap: 20px;
+    gap: 40px;
     width: 100%;
     padding: 50px 10%;
-    flex-wrap: wrap;  /*lets it go vertical on small screens */
+    box-sizing: border-box;
 }
 
 .GMTCmissiontext {
@@ -307,19 +307,15 @@ nav a.current{
     max-width: 50%;
     font-size: 17px;
     padding: 20px;
-    margin-left: 0;         /* Remove or reduce if too wide */
+    margin: 0;
 }
-
 
 .gmtccodingpic {
     flex: 1;
-    max-width: 45%;          /* Slightly reduce to fit better next to text */
+    max-width: 40%;
     height: auto;
     object-fit: cover;
     margin-top: 20px;
-    margin-left: auto;
-    margin-right: 0;
-    display: block;
 }
 
 
