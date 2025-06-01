@@ -287,9 +287,6 @@ nav a.current{
   text-align: center;
 }
 
-  .ourmission{
-    font-size: 50px;
-    text-align: center;
 
   }
 .mission-container {
@@ -300,6 +297,8 @@ nav a.current{
     width: 100%;
     padding: 50px 10%;
     box-sizing: border-box;
+    font-size: 50px;
+    text-align: center;
 }
 
 .GMTCmissiontext {
@@ -308,6 +307,7 @@ nav a.current{
     font-size: 17px;
     padding: 20px;
     margin: 0;
+    
 }
 
 .gmtccodingpic {
