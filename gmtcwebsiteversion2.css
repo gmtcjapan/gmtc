@@ -306,6 +306,7 @@ nav a.current{
     max-width: 50%;     /* Ensures it stays at half */
     font-size: 17px;
     padding: 20px;
+    margin-left: 40px
 }
 
 .gmtccodingpic {
