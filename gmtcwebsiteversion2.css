@@ -303,24 +303,24 @@ nav a.current{
 
 .GMTCmissiontext {
     flex: 1;            /* Makes text take up half of the space */
-    max-width: 50%;     /* Ensures it stays at half */
+    max-width: 40%;     /* Ensures it stays at half */
     font-size: 17px;
     padding: 20px;
     margin-left: 40px
 }
 
 .gmtccodingpic {
-    flex: 1;            /* Makes image take up half of the space */
-    max-width: 40%;     /* Ensures it stays at half */
-    width: 100%;        /* Makes it responsive */
-    height: auto;       /* Maintains aspect ratio */
-    object-fit: cover;  /* Adjusts image to fit */
-    display: flex; 
-    justify-content: center; 
+    flex: 1;            
+    max-width: 40%;     
+    width: 100%;        
+    height: auto;       
+    object-fit: cover;  
     margin-top: 20px;
-    margin-left: auto;
+    margin-left: auto;   /* This pushes the image to the right */
     margin-right: 40px;
+    display: block;      /* Proper for img, prevents inline behavior */
 }
+
 
   .meet{
     font-size:50px;
