@@ -314,6 +314,9 @@ nav a.current{
     width: 100%;        /* Makes it responsive */
     height: auto;       /* Maintains aspect ratio */
     object-fit: cover;  /* Adjusts image to fit */
+    display: flex; 
+    justify-content: center; 
+    margin-top: 20px;">
 }
 
   .meet{
