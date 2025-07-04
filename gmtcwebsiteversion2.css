@@ -500,3 +500,10 @@ font-weight: bold;
 .skill.cpp {
   background-color: #00599c;
 }
+
+.project-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
