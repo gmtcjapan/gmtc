@@ -177,6 +177,31 @@ nav a.current{
     font-color: #000000 /*white color*/
 }
 
+.activities-section {
+    background-color: #f1fdf8;
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.section-title {
+    font-size: 45px;
+    color: #0A154A;
+    margin-bottom: 30px;
+}
+
+.activities-content {
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 18px;
+    line-height: 1.8;
+    color: #333;
+    background-color: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+
 /* Green container */
 .about-section {
     background-color: #7fd9b4;  /* Green color */
@@ -190,6 +215,7 @@ nav a.current{
     justify-content: space-around;
     align-items: center;
 }
+
 
 /* Each stat box */
 .stat-box {
