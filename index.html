@@ -1,301 +1,388 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="GMTC robotics team Tokyo">
+    <meta name="description" content="Science Agora 2025 Report by GMTC">
     <link rel="icon" href="gmtclogo.png" type="image/x-icon">
-    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@400;700&family=Exo:wght@400;700&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="style.css">
-    
-    <title>GMTC Makerspace</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <title>Science Agora Report - GMTC</title>
+    <style>
+        /* --- GMTC Core Styles --- */
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            color: #feda4a;
+            font-family: 'Orbitron', sans-serif;
+            background-color: #000;
+            overflow-x: hidden;
+        }
+
+        .body-text, p, li, figcaption {
+            font-family: 'Roboto', sans-serif;
+            font-size: 16px;
+            line-height: 1.8;
+            color: #e0e0e0;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #4ac5ff;
+        }
+
+        a {
+            color: #feda4a;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        a:hover {
+            text-shadow: 0 0 10px #feda4a;
+            color: #fff;
+        }
+
+        /* --- Animated Starfield Background --- */
+        #starfield {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .spaceship {
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-top: 4px solid transparent;
+            border-bottom: 4px solid transparent;
+            border-left: 20px solid #ccc;
+            filter: drop-shadow(0 0 4px #fff);
+            animation: fly linear infinite;
+        }
+
+        .spaceship:nth-child(1) { top: 20%; animation-duration: 15s; animation-delay: -5s; border-left-width: 25px; }
+        .spaceship:nth-child(2) { top: 50%; animation-duration: 25s; animation-delay: -10s; border-left-width: 15px; }
+        .spaceship:nth-child(3) { top: 80%; animation-duration: 20s; animation-delay: -2s; border-left-width: 22px; }
+
+        @keyframes fly {
+            from { transform: translateX(-200px); }
+            to { transform: translateX(calc(100vw + 200px)); }
+        }
+
+        /* --- Layout & Container --- */
+        header {
+            padding: 1rem;
+            border-bottom: 2px solid #feda4a;
+            background-color: rgba(0, 0, 0, 0.9);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-home {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #feda4a;
+        }
+
+        .lang-switch {
+            font-family: 'Orbitron', sans-serif;
+            background: transparent;
+            border: 1px solid #4ac5ff;
+            color: #4ac5ff;
+            padding: 5px 15px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .lang-switch:hover {
+            background: #4ac5ff;
+            color: #000;
+        }
+
+        main {
+            padding: 2rem 1rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .article-container {
+            background-color: rgba(20, 20, 35, 0.8);
+            border: 1px solid #4ac5ff;
+            padding: 2rem;
+            box-shadow: 0 0 15px rgba(74, 197, 255, 0.2);
+            margin-bottom: 3rem;
+        }
+
+        /* --- Article Specific Styles --- */
+        .article-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            border-bottom: 1px solid #feda4a;
+            padding-bottom: 1rem;
+        }
+
+        .article-header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .meta-info {
+            color: #8ed500;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+
+        .author-box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 1rem;
+        }
+
+        .author-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 2px solid #feda4a;
+            object-fit: cover;
+        }
+
+        .chapter {
+            margin-top: 3rem;
+            border-left: 4px solid #feda4a;
+            padding-left: 15px;
+        }
+
+        figure {
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        figure img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #4ac5ff;
+            box-shadow: 0 0 10px rgba(74, 197, 255, 0.3);
+        }
+
+        figcaption {
+            margin-top: 0.5rem;
+            font-size: 0.85rem;
+            color: #4ac5ff;
+            font-style: italic;
+        }
+
+        blockquote {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-left: 4px solid #8ed500;
+            margin: 2rem 0;
+            padding: 1rem;
+            font-style: normal; /* Changed from italic to normal for better readability */
+            font-family: 'Roboto', sans-serif;
+        }
+
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            border-top: 2px solid #feda4a;
+            margin-top: 2rem;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 10px 20px;
+            border: 1px solid #feda4a;
+            color: #feda4a;
+        }
+
+        .back-btn:hover {
+            background-color: #feda4a;
+            color: #000;
+            text-shadow: none;
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .article-container {
+                padding: 1rem;
+            }
+            h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
 </head>
-    
 <body>
+
     <div id="starfield">
         <div class="spaceship"></div>
         <div class="spaceship"></div>
         <div class="spaceship"></div>
     </div>
 
-    <div id="loader" class="loader-container">
-        <div class="loader-content">
-            <div class="glitch-wrapper">
-               <div class="glitch" data-glitch="GMTC">GMTC</div>
+    <header>
+        <a href="index.html" class="nav-home">// GMTC HOME</a>
+        <button id="lang-toggle" class="lang-switch">JP / EN</button>
+    </header>
+
+    <main>
+        <!-- ENGLISH CONTENT -->
+        <article id="content-en" class="article-container">
+            <div class="article-header">
+                <h1>Our STEM Workshop at Science Agora</h1>
+                <div class="author-box">
+                    <img src="https://pbs.twimg.com/media/GnJQLRyaAAAtVDx?format=jpg&name=small" alt="Ryuma Kojima" class="author-img">
+                    <div class="meta-info">
+                        // AUTHOR: Ryuma Kojima<br>
+                        // DATE: 31/10/2025
+                    </div>
+                </div>
             </div>
-            <p class="sub-text">// INITIATING CONNECTION...</p>
-            <div class="language-selector">
-                <p>// SELECT LANGUAGE</p>
-                <button id="lang-en" class="btn">
-                  <span class="btn-text-one">ENGLISH</span>
-                  <span class="btn-text-two">ENTER</span>
-                </button>
-                <button id="lang-jp" class="btn">
-                  <span class="btn-text-one">日本語</span>
-                  <span class="btn-text-two">開く！</span>
-                </button>
+
+            <figure>
+                <img src="https://ryumacv.neocities.org/blog/Screenshot%202025-11-09%20194748.png" alt="Kids playing with Arduino robots at Science Agora">
+                <figcaption>Arduino robot workshop at Science Agora.</figcaption>
+            </figure>
+
+            <h2 class="chapter">A Lack of Exposure</h2>
+            <p>
+                I just held a STEM workshop at <a href="https://www.jst.go.jp/sis/scienceagora/about.html" target="_blank" rel="noopener noreferrer">Science Agora</a> as a GMTC member.
+            </p>
+            <p>
+                In Japan, only about 15% of students choose engineering. From my personal experience, I think it is because they have never experienced robotics or programming. I believed the problem was not a lack of interest, but a lack of exposure.
+            </p>
+
+            <figure>
+                <img src="https://ryumacv.neocities.org/blog/Screenshot%202025-11-09%20193418.png" alt="Graph showing the percentage of Japanese students choosing engineering majors">
+                <figcaption>Percentage of Japanese students pursuing engineering majors.</figcaption>
+            </figure>
+
+            <p>
+                So in high school (though I'm still in high school), a friend and I founded a STEM learning group, GMTC, to create those opportunities. We organize free workshops in robotics and coding for elementary students. This October, we were thrilled to hold our workshop at Science Agora, Japan’s national science event.
+            </p>
+
+            <h2 class="chapter">The Workshop</h2>
+            <p>
+                This time, we specifically targeted elementary school kids. We had about 50-70 kids come to our booth—I wasn't really counting, but it was packed!
+            </p>
+
+            <figure>
+                <img src="https://ryumacv.neocities.org/blog/Screenshot%202025-11-09%20194947.png" alt="Science Agora Crowd">
+                <figcaption>Science Agora Atmosphere.</figcaption>
+            </figure>
+
+            <p>
+                I taught them the basics of programming (using tools like Scratch and concepts from C++) and let them play with Arduino robots we had built. It was amazing to see them have fun and get excited about making the robots move.
+            </p>
+
+            <h2 class="chapter">Reflections</h2>
+            <p>
+                A common debate I had with many of parents was: "Should we make our kids learn advanced programming like C++ early, or should they start with simple block programming like Scratch?"
+            </p>
+            <blockquote>
+                Block programming is intuitive and a great entry point for kids. However, it can create a "wall" later, making the transition to text-based code more difficult. But indeed, text-based programming has a high hurdle to get started.
+            </blockquote>
+            <p>
+                Personally, I believe from a long-term perspective, it's good to start with scratch or mokey banana but also introduce simple text-based code like Python or C++ early on, without relying too much on block programming.
+            </p>
+
+            <div style="text-align: center;">
+                <a href="index.html" class="back-btn">// RETURN TO BASE</a>
             </div>
-        </div>
-    </div>
+        </article>
 
-    <div id="english-content" class="site-content" style="display: none;">
-        <header>
-            <nav>
-                <ul>
-                    <li><a href="#top">Home</a></li>
-                    <li><a href="#events">Events</a></li>
-                    <li><a href="#about-us">About Us</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#join-us">Join Us</a></li>
-                </ul>
-            </nav>
-        </header>
-
-        <main>
-            <section id="events">
-                <h2 style="color: #4ac5ff; margin-bottom: 0.5rem; margin-top: -2rem;">// Upcoming Events</h2>
-                 <div class="event-container">
-                    <p class="body-text" style="text-align: center; width: 100%;">No upcoming events scheduled. Check projects for past activities.</p>
-                 </div>
-            </section>
-            
-            <section id="top" class="hero">
-                 <div class="star-wars-intro">
-                    <p class="intro-text">A long time ago, in a somewhere in Asia far, far away....</p>
-                </div>
-                <h1>GMTC JAPAN</h1>
-            </section>
-            
-            <section id="about-us">
-                <h2 style="color: #4ac5ff;">// About Us</h2>
-                <div class="text-box">
-                    <p class="body-text" style="color: #ffffff;">
-                        GMTC Japan is a student-led robotics team and global makers community dedicated to designing 
-                        and building unique and imaginative robotic systems. Based in Tokyo, we provide Japanese junior and high school students with the
-                        opportunity to tackle complex engineering challenges through hands-on robotics projects. <br><br>
-                        
-                        Since our founding last year, we have been committed to cultivating an environment where 
-                        curiosity drives innovation. Our mission is to prove that the most impactful learning happens when
-                        students have the freedom to build what they find truly interesting. 
-                    </p>
-                </div>
-            </section>
-
-            <section id="projects">
-                <h2 style="color: #4ac5ff;">// Projects</h2>
-                <div class="text-box" style="margin-bottom: 2rem;">
-                    <p class="body-text">Access our past project files and schematics.</p>
-                </div>
-                
-                <div class="event-container">
-                    <div class="parent">
-                        <div class="card">
-                            <div class="content-box">
-                                <span class="card-title">Science Agora 2025</span>
-                                <p class="card-content body-text">
-                                    Selected to present at a National Exhibition in Japan. Showcased Bob0, our first RC robot. 
-                                </p>
-                                <a href="scienceAgora2025.html" class="see-more">See More</a>
-                            </div>
-                            <div class="date-box">
-                                <span class="month">OCT</span>
-                                <span class="date">25/26</span>
-                            </div>
-                        </div>
-                    </div>
-                 </div>
-
-                <div style="text-align: center; margin-top: 2rem;">
-                    <a href="projects.html" class="button">View All Projects</a>
-                </div>
-            </section>
-            
-            <section id="team">
-                <h2 class="subtitle" style="color: #4ac5ff; margin-top: 0; text-align: center;">// Members</h2>
-                <div class="team-grid">
-                    <div class="team-member-card">
-                        <h3>Hanano Suzuki</h3>
-                        <p class="role body-text">Co-founder</p>
-                        <div class="tags">
-                            <span>HTML</span>
-                            <span>CSS</span>
-                        </div>
-                    </div>
-                    <div class="team-member-card">
-                        <h3>Ryuma Kojima</h3>
-                        <p class="role body-text">Co-founder</p>
-                        <div class="tags">
-                            <span>C++</span>
-                        </div>
-                        <a href="https://ryumacv.neocities.org/" class="page-link">Go to my page</a>
-                    </div>
-                    <div class="team-member-card">
-                        <h3>Maria Fujisawa</h3>
-                        <p class="role body-text">Co-founder</p>
-                        <div class="tags">
-                            <span>HTML</span>
-                            <span>CSS</span>
-                        </div>
-                        <a href="http://www.mariafujisawa.com/" class="page-link">Go to my page</a>
-                    </div>
-                    <div class="team-member-card">
-                        <h3>Junji Ogawa</h3>
-                        <p class="role body-text">Member</p>
-                        <div class="tags">
-                            <span>Member</span>
-                        </div>
-                    </div>
-                    <div class="team-member-card">
-                        <h3>Honoka</h3>
-                        <p class="role body-text">Member</p>
-                        <div class="tags">
-                            <span>Member</span>
-                        </div>
+        <!-- JAPANESE CONTENT -->
+        <article id="content-jp" class="article-container" style="display: none;">
+            <div class="article-header">
+                <h1>サイエンスアゴラ2025-振り返り</h1>
+                <div class="author-box">
+                    <img src="https://pbs.twimg.com/media/GnJQLRyaAAAtVDx?format=jpg&name=small" alt="Ryuma Kojima" class="author-img">
+                    <div class="meta-info">
+                        // 著者: 小島 竜磨<br>
+                        // 日付: 2025/10/31
                     </div>
                 </div>
-            </section>
-
-            <section id="join-us">
-                <h2 style="color: #4ac5ff; text-align: center;">// Join Us</h2>
-                <div style="text-align: center;">
-                    <a class="button" href="https://jp.surveymonkey.com/r/5L5MP86" target="_blank">Enlist Now</a>
-                </div>
-            </section>
-        </main>
-
-        <footer>
-            <div class="social-links">
-                 <a href="mailto:gmtcjapan@gmail.com">Email</a>
-                <a href="https://www.instagram.com/gmtcjapan/" target="_blank">Instagram</a>
-                <a href="https://x.com/GMTCJapan" target="_blank">X (Twitter)</a>
             </div>
-            <p class="body-text">May the Force be with you. &copy; 2024 GMTC Japan</p>
-        </footer>
-    </div>
 
-    <div id="japanese-content" class="site-content" style="display: none;">
-        <header>
-            <nav>
-                <ul>
-                    <li><a href="#top-jp">ホーム</a></li>
-                    <li><a href="#events-jp">イベント</a></li>
-                    <li><a href="#about-us-jp">私たちについて</a></li>
-                    <li><a href="#projects-jp">プロジェクト</a></li>
-                    <li><a href="#join-us-jp">参加する</a></li>
-                </ul>
-            </nav>
-        </header>
+            <figure>
+                <img src="https://ryumacv.neocities.org/blog/Screenshot%202025-11-09%20194748.png" alt="アルドゥイーノを用いたロボットワークショップの様子">
+                <figcaption>アルドゥイーノを用いたロボットワークショップの様子</figcaption>
+            </figure>
 
-        <main>
-            <section id="events-jp">
-                <h2 style="color: #4ac5ff; margin-bottom: 0.5rem; margin-top: -2rem; text-align: center;">// 近日開催のイベント</h2>
-                 <div class="event-container">
-                    <p class="body-text" style="text-align: center; width: 100%;">現在予定されているイベントはありません。過去の活動はプロジェクトをご覧ください。</p>
-                 </div>
-            </section>
+            <h2 class="chapter">ロボットに触れる機会が少ない</h2>
+            <p>
+                この前サイエンスアゴラ2025に参加してきました。
+            </p>
+            <p>
+                日本では、高校生の工学志望率はおよそ15%です。（そもそも理系選択者が少ないのは言わずもがなですが）それは興味がないのではなく、ロボットやコーディングに触れる機会が少ないからではないでしょうか？
+            </p>
 
-            <section id="top-jp" class="hero">
-                <h1>GMTC JAPAN</h1>
-            </section>
-            
-            <section id="about-us-jp">
-                <h2 style="color: #4ac5ff; text-align: center;">// 私たちについて</h2>
-                <div class="text-box">
-                    <p class="body-text" style="color: #ffffff;">
-                        GMTC Japanは、独創的で想像力豊かなロボットの設計・製作に情熱を注ぐ、学生主体のロボティクスチーム兼グローバル・メイカーズコミュニティです。東京を拠点に、日本の中高生が実社会のエンジニアリングの課題に挑戦し、ハンズオン（実践的）な経験を積める場を提供しています。<br><br>
-                        設立以来、私たちは「好奇心がイノベーションを加速させる」環境づくりを大切にしてきました。私たちのミッションは、学生が自分の興味に従って自由にものづくりをすることが、最も深い学びに繋がることを証明することです。
-                    </p>
-                </div>
-            </section>
+            <figure>
+                <img src="https://ryumacv.neocities.org/blog/Screenshot%202025-11-09%20193418.png" alt="工学志望率のグラフ">
+                <figcaption>工学志望率</figcaption>
+            </figure>
 
-            <section id="projects-jp">
-                <h2 style="color: #4ac5ff; text-align: center;">// プロジェクト</h2>
-                <div class="text-box" style="margin-bottom: 2rem;">
-                    <p class="body-text">過去のプロジェクトにアクセスします。</p>
-                </div>
+            <p>
+                そのような背景があって今回のサイエンスアゴラでは、小学生や中学生といった文理選択前の学生さん向けのロボット/コーディング（C++orスクラッチ）体験会を開催しました。
+            </p>
 
-                <div class="event-container">
-                    <div class="parent">
-                        <div class="card">
-                            <div class="content-box">
-                                <span class="card-title">サイエンスアゴラ2025</span>
-                                <p class="card-content body-text">
-                                   JST主催の展示サイエンスアゴラ2025にブース出展しました！初代RCロボット「Bob0」を展示。
-                                </p>
-                                <a href="https://www.jst.go.jp/sis/scienceagora/2025/" class="see-more">詳細</a>
-                            </div>
-                            <div class="date-box">
-                                <span class="month">10月</span>
-                                <span class="date">25ー26日</span>
-                            </div>
-                        </div>
-                    </div>
-                 </div>
+            <figure>
+                <img src="https://ryumacv.neocities.org/blog/Screenshot%202025-11-09%20194947.png" alt="体験会の様子">
+                <figcaption>体験会の様子</figcaption>
+            </figure>
 
-                <div style="text-align: center; margin-top: 2rem;">
-                    <a href="pagenotfound.html" class="button">全プロジェクトを見る</a>
-                </div>
-            </section>
+            <h2 class="chapter">振り返り</h2>
+            <p>
+                多くの保護者の皆様とお話したのは、ブロックプログラミングを続けるべきか、それとも早い内からC++やPythonなどのコーディングに移行するべきかという議題でした。
+            </p>
+            <p>
+                個人的には、ブロックプログラミングに漬かりすぎてしまうと、（特に日本語でプレイできるスクラッチなど）いざC++やPythonに移行する際、急に英語になってしまうとわからなくなってしまう恐れがある為、早い内からの移行をお勧めしたいです。
+            </p>
 
-            <section id="team-jp">
-                <h2 class="subtitle" style="color: #4ac5ff; margin-top: 0; text-align: center;">// メンバー</h2>
-                <div class="team-grid">
-                    <div class="team-member-card">
-                        <h3>鈴木 はなの</h3>
-                        <p class="role body-text">共同設立者</p>
-                    </div>
-                    <div class="team-member-card">
-                        <h3>小島 竜磨</h3>
-                        <p class="role body-text">共同設立者</p>
-                         <a href="https://ryumacv.neocities.org/" class="page-link">私のページへ</a>
-                    </div>
-                    <div class="team-member-card">
-                        <h3>藤澤 まりあ</h3>
-                        <p class="role body-text">共同設立者</p>
-                         <a href="http://www.mariafujisawa.com/" class="page-link">私のページへ</a>
-                    </div>
-                    <div class="team-member-card">
-                        <h3>Junji Ogawa</h3>
-                        <p class="role body-text">メンバー</p>
-                    </div>
-                    <div class="team-member-card">
-                        <h3>Honoka</h3>
-                        <p class="role body-text">メンバー</p>
-                    </div>
-                </div>
-            </section>
-
-            <section id="join-us-jp">
-                <h2 style="color: #4ac5ff; text-align: center;">// 参加する</h2>
-                <div style="text-align: center;">
-                     <a class="button" href="https://jp.surveymonkey.com/r/5L5MP86" target="_blank">今すぐ参加</a>
-                </div>
-            </section>
-        </main>
-
-        <footer>
-            <div class="social-links">
-                 <a href="mailto:gmtcjapan@gmail.com">Eメール</a>
-                <a href="https://www.instagram.com/gmtcjapan/" target="_blank">インスタグラム</a>
-                <a href="https://x.com/GMTCJapan" target="_blank">X (ツイッター)</a>
+            <div style="text-align: center;">
+                <a href="index.html" class="back-btn">// 基地に戻る</a>
             </div>
-            <p class="body-text">Arduinoと共にあらんことを。 &copy; 2024 GMTC Japan</p>
-        </footer>
-    </div>
+        </article>
+
+    </main>
+
+    <footer>
+        <p class="body-text">May the Force be with you. &copy; 2024 GMTC Japan</p>
+    </footer>
 
     <script>
-        document.getElementById('lang-en').addEventListener('click', function() {
-            document.getElementById('loader').style.display = 'none';
-            document.getElementById('english-content').style.display = 'block';
-        });
+        const langToggle = document.getElementById('lang-toggle');
+        const contentEn = document.getElementById('content-en');
+        const contentJp = document.getElementById('content-jp');
+        let isEnglish = true;
 
-        document.getElementById('lang-jp').addEventListener('click', function() {
-            document.getElementById('loader').style.display = 'none';
-            document.getElementById('japanese-content').style.display = 'block';
+        langToggle.addEventListener('click', () => {
+            if (isEnglish) {
+                contentEn.style.display = 'none';
+                contentJp.style.display = 'block';
+                langToggle.textContent = 'EN / JP';
+            } else {
+                contentEn.style.display = 'block';
+                contentJp.style.display = 'none';
+                langToggle.textContent = 'JP / EN';
+            }
+            isEnglish = !isEnglish;
         });
     </script>
 </body>
