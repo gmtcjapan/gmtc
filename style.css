@@ -1,3 +1,9 @@
+/* Logo Styles */
+.nav-logo img {
+    height: 50px;    /* <--- THIS CHANGES THE SIZE */
+    width: auto;     /* This keeps the logo from looking stretched */
+    transition: 0.3s;
+}
 /* --- RESET & VARIABLES --- */
 :root {
     --primary-color: #4ac5ff;
