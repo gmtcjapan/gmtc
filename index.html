@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="GMTC robotics team Tokyo">
     
+    <!-- Added Logo as Favicon -->
+    <link rel="icon" href="https://github.com/gmtcjapan/gmtc/blob/main/gmtclogo.png?raw=true" type="image/x-icon">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;700&family=Exo:wght@400;700&display=swap" rel="stylesheet">
@@ -164,33 +167,45 @@
             background: rgba(5, 7, 10, 0.85);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(74, 197, 255, 0.2);
-            padding: 1.5rem 0; /* Increased padding */
+            padding: 1rem 0;
         }
 
         nav {
             display: flex;
-            justify-content: center;
+            justify-content: space-between; /* Changed layout to space-between */
             align-items: center;
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 2rem;
         }
 
-        nav ul {
-            display: flex;
-            gap: 3rem; /* More spacing between items */
+        /* Logo Styles */
+        .nav-logo img {
+            height: 50px;
+            width: auto;
+            transition: 0.3s;
+        }
+        .nav-logo:hover img {
+            filter: drop-shadow(0 0 10px var(--primary-color));
+            transform: scale(1.05);
         }
 
-        nav a {
+        nav ul {
+            display: flex;
+            gap: 2rem; /* Slightly reduced gap to fit new items */
+            align-items: center;
+        }
+
+        nav a.nav-link { /* Specific class for text links */
             font-family: var(--font-display);
-            font-size: 1.25rem; /* Bigger font size */
+            font-size: 1.1rem; /* Adjusted slightly for space */
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1px;
             position: relative;
         }
 
-        nav a::after {
+        nav a.nav-link::after {
             content: '';
             position: absolute;
             width: 0;
@@ -201,8 +216,27 @@
             transition: width 0.3s;
         }
 
-        nav a:hover::after { width: 100%; }
-        nav a:hover { color: var(--primary-color); }
+        nav a.nav-link:hover::after { width: 100%; }
+        nav a.nav-link:hover { color: var(--primary-color); }
+
+        /* Language Switch Button in Header */
+        .lang-btn {
+            background: transparent;
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+            padding: 5px 12px;
+            cursor: pointer;
+            font-family: var(--font-display);
+            font-size: 0.9rem;
+            border-radius: 4px;
+            transition: 0.3s;
+            margin-left: 10px;
+        }
+        .lang-btn:hover {
+            background: var(--primary-color);
+            color: #000;
+            box-shadow: 0 0 10px var(--primary-color);
+        }
 
         /* --- SECTIONS COMMON --- */
         section {
@@ -403,6 +437,23 @@
             background: linear-gradient(0deg, rgba(74,197,255,0.1) 0%, rgba(0,0,0,0) 100%);
         }
 
+        /* Mascot Styles */
+        .mascot-container {
+            margin-top: 3rem;
+            display: flex;
+            justify-content: center;
+        }
+        .mascot-img {
+            max-width: 200px;
+            height: auto;
+            filter: drop-shadow(0 0 20px rgba(74, 197, 255, 0.2));
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+        .mascot-img:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+
         .button {
             display: inline-block;
             background: var(--primary-color);
@@ -433,7 +484,8 @@
         /* --- RESPONSIVE --- */
         @media (max-width: 768px) {
             header { padding: 1rem 0; }
-            nav a { font-size: 0.9rem; }
+            nav { flex-direction: column; gap: 1rem; }
+            nav a.nav-link { font-size: 0.9rem; }
             nav ul { gap: 1rem; }
             .hero h1 { font-size: 3rem; }
             h2 { font-size: 2rem; }
@@ -447,6 +499,8 @@
     <!-- LOADER -->
     <div id="loader" class="loader-container">
         <div class="loader-content">
+            <!-- Added Logo to Loader -->
+            <img src="https://github.com/gmtcjapan/gmtc/blob/main/gmtclogo.png?raw=true" alt="GMTC Logo" style="width: 80px; margin-bottom: 20px;">
             <div class="glitch-wrapper">
                 <div class="glitch" data-glitch="GMTC">GMTC</div>
             </div>
@@ -462,13 +516,19 @@
     <div id="english-content" style="display: none;">
         <header>
             <nav>
+                <!-- Logo Left -->
+                <a href="#hero-en" class="nav-logo">
+                    <img src="https://github.com/gmtcjapan/gmtc/blob/main/gmtclogo.png?raw=true" alt="GMTC Logo">
+                </a>
+                <!-- Links Right -->
                 <ul>
-                    <!-- Removed Home link to keep header clean, Logo is usually Home -->
-                    <li><a href="#hero-en">Home</a></li> 
-                    <li><a href="#about-en">Who We Are</a></li>
-                    <li><a href="projects.html">Projects</a></li>
-                    <li><a href="#team-en">Team</a></li>
-                    <li><a href="#join-en" style="color: var(--primary-color);">Join Us</a></li>
+                    <li><a href="#hero-en" class="nav-link">Home</a></li> 
+                    <li><a href="#about-en" class="nav-link">Who We Are</a></li>
+                    <li><a href="#projects-en" class="nav-link">What We Do</a></li>
+                    <li><a href="https://gmtcjapan.com/projects.html" class="nav-link">Projects</a></li>
+                    <li><a href="#team-en" class="nav-link">Team</a></li>
+                    <li><a href="#join-en" class="nav-link" style="color: var(--primary-color);">Join Us</a></li>
+                    <li><button id="switch-to-jp" class="lang-btn">JP</button></li>
                 </ul>
             </nav>
         </header>
@@ -521,7 +581,7 @@
                             Selected to present at a National Exhibition in Japan. Showcased Bob0, our first RC robot design. 
                             Demonstrated autonomous navigation capabilities.
                         </p>
-                        <a href="scienceAgora2025.html" class="see-more">View Project -></a>
+                        <a href="https://gmtcjapan.com/scienceAgora2025.html" class="see-more">View Project -></a>
                     </div>
                     
                     <!-- Placeholder Project to fill grid -->
@@ -566,12 +626,12 @@
                     </div>
                     <div class="team-member-card">
                         <h3>Junji Ogawa</h3>
-                        <p class="role">Engineer</p>
+                        <p class="role">Member</p>
                         <div class="tags"><span>Fabrication</span></div>
                     </div>
                     <div class="team-member-card">
                         <h3>Honoka</h3>
-                        <p class="role">Logistics</p>
+                        <p class="role">Member</p>
                         <div class="tags"><span>Management</span></div>
                     </div>
                 </div>
@@ -581,6 +641,11 @@
                 <h2 style="border: none; margin-bottom: 1rem;">Join The Crew</h2>
                 <p class="mission-text" style="margin: 0 auto 2rem auto;">Open to students in Tokyo.</p>
                 <a class="button" href="https://jp.surveymonkey.com/r/5L5MP86" target="_blank">Enlist Now</a>
+
+                <!-- Mascot Added Here -->
+                <div class="mascot-container">
+                    <img src="https://github.com/gmtcjapan/gmtc/blob/main/gmtccharacter.png?raw=true" alt="GMTC Mascot" class="mascot-img" title="Hello there!">
+                </div>
             </section>
         </main>
 
@@ -598,12 +663,18 @@
     <div id="japanese-content" style="display: none;">
         <header>
             <nav>
+                <!-- Logo Left -->
+                <a href="#hero-jp" class="nav-logo">
+                    <img src="https://github.com/gmtcjapan/gmtc/blob/main/gmtclogo.png?raw=true" alt="GMTC Logo">
+                </a>
                 <ul>
-                    <li><a href="#hero-jp">ホーム</a></li>
-                    <li><a href="#about-jp">私たちについて</a></li>
-                    <li><a href="#projects-jp">活動内容</a></li>
-                    <li><a href="#team-jp">メンバー</a></li>
-                    <li><a href="#join-jp" style="color: var(--primary-color);">参加する</a></li>
+                    <li><a href="#hero-jp" class="nav-link">ホーム</a></li>
+                    <li><a href="#about-jp" class="nav-link">私たちについて</a></li>
+                    <li><a href="#projects-jp" class="nav-link">活動内容</a></li>
+                    <li><a href="https://gmtcjapan.com/projects.html" class="nav-link">プロジェクト一覧</a></li>
+                    <li><a href="#team-jp" class="nav-link">メンバー</a></li>
+                    <li><a href="#join-jp" class="nav-link" style="color: var(--primary-color);">参加する</a></li>
+                    <li><button id="switch-to-en" class="lang-btn">EN</button></li>
                 </ul>
             </nav>
         </header>
@@ -650,7 +721,7 @@
                         <p class="card-content">
                            JST主催の展示サイエンスアゴラ2025にブース出展しました！初代RCロボット「Bob0」を展示。
                         </p>
-                        <a href="https://www.jst.go.jp/sis/scienceagora/2025/" class="see-more">詳細を見る -></a>
+                        <a href="https://gmtcjapan.com/scienceAgora2025.html" class="see-more">詳細を見る -></a>
                     </div>
                     
                      <div class="card">
@@ -704,6 +775,11 @@
                 <h2 style="border: none; margin-bottom: 1rem;">参加する</h2>
                  <p class="mission-text" style="margin: 0 auto 2rem auto;">東京の学生を募集しています。</p>
                 <a class="button" href="https://jp.surveymonkey.com/r/5L5MP86" target="_blank">今すぐ参加</a>
+
+                <!-- Mascot Added Here -->
+                <div class="mascot-container">
+                    <img src="https://github.com/gmtcjapan/gmtc/blob/main/gmtccharacter.png?raw=true" alt="GMTC Mascot" class="mascot-img" title="こんにちは！">
+                </div>
             </section>
         </main>
 
@@ -718,6 +794,7 @@
     </div>
 
     <script>
+        // Initial Loader Logic
         document.getElementById('lang-en').addEventListener('click', function() {
             document.getElementById('loader').style.display = 'none';
             document.getElementById('english-content').style.display = 'block';
@@ -726,6 +803,17 @@
         document.getElementById('lang-jp').addEventListener('click', function() {
             document.getElementById('loader').style.display = 'none';
             document.getElementById('japanese-content').style.display = 'block';
+        });
+
+        // Header Language Switcher Logic
+        document.getElementById('switch-to-jp').addEventListener('click', function() {
+            document.getElementById('english-content').style.display = 'none';
+            document.getElementById('japanese-content').style.display = 'block';
+        });
+
+        document.getElementById('switch-to-en').addEventListener('click', function() {
+            document.getElementById('japanese-content').style.display = 'none';
+            document.getElementById('english-content').style.display = 'block';
         });
     </script>
 </body>
