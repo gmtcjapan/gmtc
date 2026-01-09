@@ -86,6 +86,7 @@
             text-align: center;
             width: 90%;
             max-width: 400px;
+            padding: 20px;
         }
 
         .glitch-wrapper {
@@ -164,10 +165,11 @@
             top: 0;
             width: 100%;
             z-index: 100;
-            background: rgba(5, 7, 10, 0.85);
+            background: rgba(5, 7, 10, 0.95); /* Slightly darker for better readability */
             backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(74, 197, 255, 0.2);
             padding: 1rem 0;
+            transition: 0.3s;
         }
 
         nav {
@@ -481,14 +483,103 @@
         .social-links a { margin: 0 10px; color: #fff; font-family: var(--font-display); }
         .social-links a:hover { color: var(--primary-color); }
 
-        /* --- RESPONSIVE --- */
-        @media (max-width: 768px) {
-            header { padding: 1rem 0; }
-            nav { flex-direction: column; gap: 1rem; }
-            nav a.nav-link { font-size: 0.9rem; }
+        /* --- RESPONSIVE ADJUSTMENTS (Enhanced Mobile Support) --- */
+        @media (max-width: 900px) {
+            .hero h1 { font-size: 4rem; }
             nav ul { gap: 1rem; }
-            .hero h1 { font-size: 3rem; }
-            h2 { font-size: 2rem; }
+            nav a.nav-link { font-size: 0.9rem; }
+        }
+
+        @media (max-width: 768px) {
+            /* Header Adjustment for Mobile */
+            header {
+                padding: 0.5rem 0;
+                /* Allows scrolling if menu is too tall on small screens */
+                max-height: 100vh;
+                overflow-y: auto; 
+            }
+
+            nav {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 0 1rem;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 0.8rem;
+                width: 100%;
+                text-align: center;
+                padding-bottom: 1rem;
+            }
+
+            nav a.nav-link {
+                font-size: 1.1rem;
+                display: block;
+                padding: 5px 0;
+            }
+
+            /* Hero Section Fix */
+            .hero {
+                /* Increased padding-top to account for taller header on mobile */
+                padding-top: 220px; 
+                height: auto;
+                min-height: 100vh;
+                padding-bottom: 4rem;
+            }
+
+            .hero h1 {
+                font-size: 3rem; /* Smaller title on mobile */
+                line-height: 1.2;
+                word-break: break-word;
+            }
+
+            .star-wars-intro {
+                font-size: 1rem;
+                padding: 0 1rem;
+            }
+
+            /* Section Padding */
+            section {
+                padding: 4rem 1rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+                margin-bottom: 2rem;
+                border-left-width: 3px;
+            }
+
+            /* Force 1 Column for Grids on Mobile to prevent overflow */
+            .projects-grid, .team-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .card, .team-member-card {
+                padding: 1.5rem;
+            }
+            
+            .mission-text {
+                font-size: 1rem;
+            }
+
+            .mission-highlight {
+                font-size: 1.4rem;
+            }
+
+            /* Loader Text Adjustment */
+            .glitch-wrapper {
+                font-size: 2.5rem;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            .mascot-img {
+                max-width: 150px;
+            }
         }
     </style>
 </head>
@@ -547,16 +638,15 @@
                 <h2>Who We Are</h2>
                 <div class="mission-content">
                     <div class="mission-highlight">
-                        Curiosity drives innovation. We build what we find truly interesting.
+                        Ensuring innovation is not a privilege, but a shared benefit accessible to all.
                     </div>
                     <div class="text-box">
                         <p class="mission-text">
-                            GMTC Japan is a student-led robotics team and global makers community dedicated to designing 
-                            and building unique and imaginative robotic systems. Based in Tokyo, we provide Japanese junior and high school students with the
-                            opportunity to tackle complex engineering challenges through hands-on robotics projects. 
+                            GMTC Japan is a student-led project team focused on designing and building innovative robotics and embedded systems. 
+                            We develop real-world technology that challenges convention and showcases the future of engineering.
                             <br><br>
-                            Since our founding, we have been committed to cultivating an environment where innovation isn't forced—it's discovered. 
-                            We believe the most impactful learning happens when you have the freedom to experiment.
+                            Having personally faced the STEM opportunity gap, we are dedicated to helping other students overcome these barriers. 
+                            That is why we actively host STEM workshops for younger generations, ensuring that the tools of creation are within everyone's reach.
                         </p>
                     </div>
                 </div>
@@ -610,7 +700,7 @@
                     <div class="team-member-card">
                         <h3>Hanano Suzuki</h3>
                         <p class="role">Co-founder</p>
-                        <div class="tags"><span>HTML</span><span>CSS</span><span>Leadership</span></div>
+                        <div class="tags"><span>HTML</span><span>CSS</span></div>
                     </div>
                     <div class="team-member-card">
                         <h3>Ryuma Kojima</h3>
@@ -621,18 +711,16 @@
                     <div class="team-member-card">
                         <h3>Maria Fujisawa</h3>
                         <p class="role">Co-founder</p>
-                        <div class="tags"><span>HTML</span><span>CSS</span><span>Design</span></div>
+                        <div class="tags"><span>HTML</span><span>CSS</span><span>3D Printing</span></div>
                         <a href="http://www.mariafujisawa.com/" class="page-link" target="_blank">Portfolio</a>
                     </div>
                     <div class="team-member-card">
                         <h3>Junji Ogawa</h3>
                         <p class="role">Member</p>
-                        <div class="tags"><span>Fabrication</span></div>
                     </div>
                     <div class="team-member-card">
                         <h3>Honoka</h3>
                         <p class="role">Member</p>
-                        <div class="tags"><span>Management</span></div>
                     </div>
                 </div>
             </section>
@@ -683,7 +771,7 @@
             <!-- 1. TITLE -->
             <section id="hero-jp" class="hero">
                 <div class="star-wars-intro">
-                    <p>昔々、アジアのどこか遠くで....</p>
+                    <p>昔々、武蔵国のどこか遠くで....</p>
                 </div>
                 <h1>GMTC JAPAN</h1>
             </section>
@@ -693,12 +781,12 @@
                 <h2>私たちについて</h2>
                 <div class="mission-content">
                     <div class="mission-highlight">
-                        好奇心がイノベーションを加速させる。<br>私たちは「面白い」を形にします。
+                        イノベーションを特権ではなく、万人に開かれた共有の利益に。
                     </div>
                     <div class="text-box">
                         <p class="mission-text">
-                            GMTC Japanは、独創的で想像力豊かなロボットの設計・製作に情熱を注ぐ、学生主体のロボティクスチーム兼グローバル・メイカーズコミュニティです。東京を拠点に、日本の中高生が実社会のエンジニアリングの課題に挑戦し、ハンズオン（実践的）な経験を積める場を提供しています。<br><br>
-                            設立以来、私たちのミッションは、学生が自分の興味に従って自由にものづくりをすることが、最も深い学びに繋がることを証明することです。
+                            GMTC Japanは、学生主導のプロジェクトチームです。私たち自身がSTEM教育格差に直面した経験から、他の学生たちがその壁を乗り越えられるよう支援することを使命としています。<br><br>
+                            次世代のイノベーターを育成するため、子供向けのSTEMワークショップなどを積極的に開催しています。
                         </p>
                     </div>
                 </div>
@@ -708,7 +796,7 @@
             <section id="projects-jp">
                 <h2>活動内容</h2>
                  <p class="mission-text" style="margin-bottom: 2rem;">
-                    設計、エンジニアリング、そして展示。競技用ロボットから実験的なビルドまで。
+                    設計、エンジニアリング、そして展示。
                 </p>
 
                 <div class="projects-grid">
@@ -773,7 +861,7 @@
 
             <section id="join-jp" class="join-section">
                 <h2 style="border: none; margin-bottom: 1rem;">参加する</h2>
-                 <p class="mission-text" style="margin: 0 auto 2rem auto;">東京の学生を募集しています。</p>
+                 <p class="mission-text" style="margin: 0 auto 2rem auto;">関東近郊の学生を募集しています。</p>
                 <a class="button" href="https://jp.surveymonkey.com/r/5L5MP86" target="_blank">今すぐ参加</a>
 
                 <!-- Mascot Added Here -->
