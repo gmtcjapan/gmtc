@@ -259,7 +259,7 @@ h2 {
 
 /* --- PROJECTS GRID (The Boxes you wanted) --- */
 #projects {
-    margin-top: 200px; /* Increase this number to move it further down */
+    margin-top: 130px; /* Increase this number to move it further down */
 }
 .projects-grid {
     display: grid;
