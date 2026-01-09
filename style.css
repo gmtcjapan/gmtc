@@ -258,6 +258,9 @@ h2 {
 }
 
 /* --- PROJECTS GRID (The Boxes you wanted) --- */
+#projects {
+    margin-top: 100px; /* Increase this number to move it further down */
+}
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
