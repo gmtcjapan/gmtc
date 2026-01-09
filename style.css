@@ -500,3 +500,60 @@ footer {
     nav ul { gap: 1rem; flex-wrap: wrap; }
     .team-grid { grid-template-columns: 1fr; }
 }
+
+/* FOR PROJECTS.HTML!!!!!!*/
+/* Container for the 3 boxes */
+.projects-container {
+    display: flex;
+    justify-content: center; /* Centers the boxes horizontally */
+    gap: 20px;               /* Space between the boxes */
+    padding: 40px;
+    flex-wrap: wrap;         /* Makes them stack on mobile phones */
+}
+
+/* The Individual Boxes */
+.project-card {
+    background-color: #1a1a1a; /* Dark grey background for the box */
+    border: 2px solid #90EE90; /* Your light green theme color */
+    padding: 20px;
+    width: 300px;              /* Width of each box */
+    text-align: center;
+    border-radius: 8px;        /* Slightly rounded corners */
+    transition: transform 0.3s; /* Smooth hover effect */
+}
+
+.project-card:hover {
+    transform: translateY(-10px); /* Lifts the box when you hover */
+    box-shadow: 0 0 15px #90EE90; /* Glow effect on hover */
+}
+
+/* Robot Image inside the box */
+.robot-image {
+    width: 100%;
+    height: 200px;
+    object-fit: contain;      /* Keeps image from looking stretched */
+    margin-bottom: 15px;
+}
+
+/* Robot Name (Orbitron) */
+.robot-name {
+    font-family: 'Orbitron', sans-serif;
+    color: #ffffff;
+    margin-bottom: 20px;
+}
+
+/* The "See More" Button */
+.see-more-btn {
+    display: inline-block;
+    background-color: #8B0000; /* Dark red like your reference image */
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-family: 'Exo', sans-serif;
+    font-weight: bold;
+    border-radius: 4px;
+}
+
+.see-more-btn:hover {
+    background-color: #ff0000; /* Brighter red on hover */
+}
