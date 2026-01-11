@@ -1,124 +1,532 @@
+<!DOCTYPE html>
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>Our Projects</title>
-    <link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;700&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="GMTC Japan Projects">
     
-    <link rel="stylesheet" href="style.css">
-</head>
-<header>
-    <nav>
-         <ul>
-            <!-- Logo Left -->
-            <a href="#hero-en" class="nav-logo">
-            <img src="https://github.com/gmtcjapan/gmtc/blob/main/gmtclogo.png?raw=true" alt="GMTC Logo">
-            </a>
-            <!-- Links Right -->
-            <li><a href="index.html#hero-en" class="nav-link">Home</a></li> 
-            <li><a href="index.html#about-en" class="nav-link">Who We Are</a></li>
-            <li><a href="index.html#projects-en" class="nav-link">What We Do</a></li>
-            <li><a href="https://gmtcjapan.com/projects.html" class="nav-link">Projects</a></li>
-            <li><a href="index.html#team-en" class="nav-link">Team</a></li>
-            <li><a href="index.html#join-en" class="nav-link" style="color: var(--primary-color);">Join Us</a></li>
-            <li><button id="switch-to-jp" class="lang-btn">JP</button></li>
-        </ul>
-    </nav>
-</header>
-
-
-<section id="projects">
-    <h2 class="subtitle">Featured Projects</h2>
+    <!-- Favicon -->
+    <link rel="icon" href="https://github.com/gmtcjapan/gmtc/blob/main/gmtclogo.png?raw=true" type="image/x-icon">
     
-    <div class="projects-grid"> 
-        <div class="card">
-            <div class="card-image-container">
-                <img src="bob0.png" alt="Bob0" id="img-bob0" onerror="this.src='https://via.placeholder.com/300x200?text=Bob0+Image'">
-            </div>
-            <div class="card-info">
-                <span class="card-title" id="title-bob0">Bob0</span> 
-                <p class="card-content" id="desc-bob0">RC Robot; Presented at Science Agora 2025 (National Japanese exhibition)</p> 
-                <a href="javascript:void(0)" class="see-more-btn" onclick="openProject('bob0')">SEE MORE</a>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="card-image-container">
-                <img src="robot2.jpg" alt="VRTX" id="img-vrtx" onerror="this.src='https://via.placeholder.com/300x200?text=VRTX+Drone'">
-            </div>
-            <div class="card-info">
-                <span class="card-title" id="title-vrtx">VRTX</span>
-                <p class="card-content" id="desc-vrtx">CURRENT PROJECT: AI Drone project using ESP32 and AI computer vision for autonomous flight!</p>
-                <a href="javascript:void(0)" class="see-more-btn" onclick="openProject('vrtx')">SEE MORE</a>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="card-image-container">
-                <img src="robot3.jpg" alt="nextrobot" id="img-next" onerror="this.src='https://via.placeholder.com/300x200?text=Coming+Soon'">
-            </div>
-            <div class="card-info">
-                <span class="card-title" id="title-next">Next project!?</span>
-                <p class="card-content" id="desc-next">Coming soon...</p>
-                <a href="javascript:void(0)" class="see-more-btn" onclick="openProject('next')">SEE MORE</a>
-            </div>
-        </div>
-    </div>
-</section>
-
-<div id="project-overlay" class="side-panel">
-    <span class="close-btn" onclick="closeProject()">&times;</span>
-    <img src="" id="panel-img" class="panel-main-img">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;700&family=Exo:wght@400;700&display=swap" rel="stylesheet">
     
-    <div class="panel-text">
-        <h2 id="panel-title"></h2>
-        <p id="panel-desc" class="panel-intro"></p>
-        <hr class="divider">
+    <title>GMTC Projects</title>
+
+    <style>
+        /* --- RESET & VARIABLES (Same as Index) --- */
+        :root {
+            --primary-color: #4ac5ff;
+            --bg-color: #05070a;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --text-main: #ffffff;
+            --text-muted: #b0b0b0;
+            --font-display: 'Orbitron', sans-serif;
+            --font-body: 'Exo', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+
+        /* --- BACKGROUND EFFECTS --- */
+        #starfield {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: 
+                radial-gradient(1px 1px at 20px 30px, #fff, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 40px 70px, #fff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 50px 160px, #fff, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 90px 40px, #fff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 130px 80px, #fff, rgba(0,0,0,0));
+            background-repeat: repeat;
+            background-size: 200px 200px;
+            opacity: 0.5;
+            animation: twinkle 5s infinite linear;
+        }
+
+        @keyframes twinkle {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-200px); }
+        }
+
+        /* --- NAVIGATION (Header) - Consistent with Index --- */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+            background: rgba(5, 7, 10, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(74, 197, 255, 0.2);
+            padding: 0.5rem 0;
+            transition: 0.3s;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .nav-logo img {
+            height: 50px;
+            width: auto;
+            transition: 0.3s;
+        }
+        .nav-logo:hover img {
+            filter: drop-shadow(0 0 10px var(--primary-color));
+            transform: scale(1.05);
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        nav a.nav-link {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+        }
+
+        nav a.nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--primary-color);
+            transition: width 0.3s;
+        }
+
+        nav a.nav-link:hover::after { width: 100%; }
+        nav a.nav-link:hover { color: var(--primary-color); }
+
+        .lang-btn {
+            background: transparent;
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+            padding: 5px 12px;
+            cursor: pointer;
+            font-family: var(--font-display);
+            font-size: 0.9rem;
+            border-radius: 4px;
+            transition: 0.3s;
+            margin-left: 10px;
+        }
+        .lang-btn:hover {
+            background: var(--primary-color);
+            color: #000;
+            box-shadow: 0 0 10px var(--primary-color);
+        }
+
+        /* Hamburger Menu Styles */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+        .bar {
+            display: block;
+            width: 25px;
+            height: 3px;
+            margin: 5px auto;
+            transition: all 0.3s ease-in-out;
+            background-color: var(--primary-color);
+        }
+
+        /* --- PROJECTS SPECIFIC STYLES --- */
+        section {
+            padding: 8rem 2rem 4rem 2rem; /* More top padding for fixed header */
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h2.subtitle {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 3rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-align: center;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
         
-        <div id="dynamic-details">
+        h2.subtitle::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--primary-color);
+            margin: 10px auto 0;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            padding: 1rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid rgba(74, 197, 255, 0.1);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: 0.3s;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .card:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .card-image-container {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            background: #000;
+            position: relative;
+            border-bottom: 1px solid rgba(74, 197, 255, 0.1);
+        }
+
+        .card-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+            opacity: 0.8;
+        }
+
+        .card:hover .card-image-container img {
+            transform: scale(1.1);
+            opacity: 1;
+        }
+
+        .card-info {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-title {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            color: #fff;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .card-content {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .see-more-btn {
+            display: inline-block;
+            text-align: center;
+            background: transparent;
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+            padding: 10px 0;
+            font-family: var(--font-display);
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 4px;
+            transition: 0.3s;
+            width: 100%;
+        }
+
+        .see-more-btn:hover {
+            background: var(--primary-color);
+            color: #000;
+            box-shadow: 0 0 15px var(--primary-color);
+        }
+
+        footer {
+            text-align: center;
+            padding: 3rem 1rem;
+            border-top: 1px solid #333;
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 4rem;
+        }
+
+        .social-links { margin-bottom: 1rem; }
+        .social-links a { margin: 0 10px; color: #fff; font-family: var(--font-display); }
+        .social-links a:hover { color: var(--primary-color); }
+
+        /* --- RESPONSIVE ADJUSTMENTS --- */
+        @media (max-width: 768px) {
+            header { padding: 1rem 0; }
+            .hamburger { display: block; }
+            
+            .hamburger.active .bar:nth-child(2) { opacity: 0; }
+            .hamburger.active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+            .hamburger.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                gap: 0;
+                flex-direction: column;
+                background-color: rgba(5, 7, 10, 0.98);
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                padding: 20px 0;
+                border-bottom: 1px solid rgba(74, 197, 255, 0.2);
+                border-top: 1px solid rgba(74, 197, 255, 0.1);
+            }
+            .nav-menu.active { left: 0; }
+            .nav-menu li { margin: 16px 0; width: 100%; }
+            nav a.nav-link { font-size: 1.2rem; display: block; padding: 10px; }
+            
+            h2.subtitle { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <div id="starfield"></div>
+
+    <!-- ENGLISH CONTENT -->
+    <div id="english-content">
+        <header>
+            <nav>
+                <a href="index.html#hero-en" class="nav-logo">
+                    <img src="https://github.com/gmtcjapan/gmtc/blob/main/gmtclogo.png?raw=true" alt="GMTC Logo">
+                </a>
+                
+                <div class="hamburger" id="hamburger-en">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+
+                <ul class="nav-menu" id="nav-menu-en">
+                    <!-- Links point back to index.html -->
+                    <li><a href="index.html" class="nav-link">Home</a></li> 
+                    <li><a href="index.html" class="nav-link">Who We Are</a></li>
+                    <li><a href="index.html" class="nav-link">What We Do</a></li>
+                    <li><a href="#" class="nav-link" style="color: var(--primary-color);">Projects</a></li>
+                    <li><a href="index.html" class="nav-link">Team</a></li>
+                    <li><a href="index.html" class="nav-link">Join Us</a></li>
+                    <li><button id="switch-to-jp" class="lang-btn">JP</button></li>
+                </ul>
+            </nav>
+        </header>
+
+        <section id="projects">
+            <h2 class="subtitle">Featured Projects</h2>
+            
+            <div class="projects-grid"> 
+                
+                <!-- Project 1 -->
+                <div class="card">
+                    <div class="card-image-container">
+                        <!-- Updated image source -->
+                        <img src="https://gmtcjapan.com/bob0.png" alt="Bob0" onerror="this.src='https://placehold.co/600x400/1a1a1a/4ac5ff?text=Bob0+Robot'">
+                    </div>
+                    <div class="card-info">
+                        <span class="card-title">Bob0</span> 
+                        <p class="card-content">RC Robot; Presented at Science Agora 2025 (National Japanese exhibition). Demonstrated robust mobility and control systems.</p> 
+                        <a href="#" class="see-more-btn">SEE MORE</a>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="card">
+                    <div class="card-image-container">
+                        <img src="robot2.jpg" alt="VRTX Drone" onerror="this.src='https://placehold.co/600x400/1a1a1a/4ac5ff?text=VRTX+Drone'">
+                    </div>
+                    <div class="card-info">
+                        <span class="card-title">VRTX</span>
+                        <p class="card-content">CURRENT PROJECT: AI Drone project using ESP32 and AI computer vision for autonomous flight!</p>
+                        <a href="#" class="see-more-btn">SEE MORE</a>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="card">
+                    <div class="card-image-container">
+                        <img src="robot3.jpg" alt="Future Project" onerror="this.src='https://placehold.co/600x400/1a1a1a/4ac5ff?text=Coming+Soon'">
+                    </div>
+                    <div class="card-info">
+                        <span class="card-title">Next project!?</span>
+                        <p class="card-content">Coming soon... We are always exploring new frontiers in robotics and embedded systems.</p>
+                        <a href="#" class="see-more-btn">STAY TUNED</a>
+                    </div>
+                </div>
+                
             </div>
+        </section>
+
+        <footer>
+            <div class="social-links">
+                <a href="mailto:gmtcjapan@gmail.com">Email</a>
+                <a href="https://www.instagram.com/gmtcjapan/" target="_blank">Instagram</a>
+                <a href="https://x.com/GMTCJapan" target="_blank">X (Twitter)</a>
+            </div>
+            <p>May the Force be with you. &copy; 2025 GMTC Japan</p>
+        </footer>
     </div>
-</div>
 
-<script>
-function openProject(projectId) {
-    const panel = document.getElementById("project-overlay");
-    
-    // 1. Get data from the card
-    const title = document.getElementById("title-" + projectId).innerText;
-    const desc = document.getElementById("desc-" + projectId).innerText;
-    const imgSrc = document.getElementById("img-" + projectId).src;
-    
-    // 2. Put data into the panel
-    document.getElementById("panel-title").innerText = title;
-    document.getElementById("panel-desc").innerText = desc;
-    document.getElementById("panel-img").src = imgSrc;
-    
-    // 3. Add specific tech details based on which project it is
-    let detailsHtml = "";
-    if(projectId === 'vrtx') {
-        detailsHtml = `
-            <h3>Technical Stack</h3>
-            <div class="tech-grid">
-                <div class="tech-item"><strong>MCU</strong><span>ESP32-WROOM</span></div>
-                <div class="tech-item"><strong>Sensors</strong><span>MPU6050, Ultrasonic</span></div>
-                <div class="tech-item"><strong>Status</strong><span>Active Development</span></div>
-            </div>`;
-    } else if (projectId === 'bob0') {
-        detailsHtml = `
-            <h3>Event Detail</h3>
-            <p>Presented to 600+ visitors at Science Agora 2025. Focused on bio-inspired movement.</p>
-            <div class="tech-grid">
-                <div class="tech-item"><strong>Platform</strong><span>Arduino Mega</span></div>
-                <div class="tech-item"><strong>Features</strong><span>Wireless Control</span></div>
-            </div>`;
-    }
-    
-    document.getElementById("dynamic-details").innerHTML = detailsHtml;
-    
-    // 4. Slide the panel in
-    panel.style.width = "60vw";
-}
+    <!-- JAPANESE CONTENT (Hidden by default) -->
+    <div id="japanese-content" style="display: none;">
+        <header>
+            <nav>
+                <a href="index.html" class="nav-logo">
+                    <img src="https://github.com/gmtcjapan/gmtc/blob/main/gmtclogo.png?raw=true" alt="GMTC Logo">
+                </a>
+                
+                <div class="hamburger" id="hamburger-jp">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
 
-function closeProject() {
-    document.getElementById("project-overlay").style.width = "0";
-}
-</script>
+                <ul class="nav-menu" id="nav-menu-jp">
+                    <li><a href="index.html" class="nav-link">ホーム</a></li>
+                    <li><a href="index.html" class="nav-link">私たちについて</a></li>
+                    <li><a href="index.html" class="nav-link">活動内容</a></li>
+                    <li><a href="#" class="nav-link" style="color: var(--primary-color);">プロジェクト一覧</a></li>
+                    <li><a href="index.html" class="nav-link">メンバー</a></li>
+                    <li><a href="index.html" class="nav-link">参加する</a></li>
+                    <li><button id="switch-to-en" class="lang-btn">EN</button></li>
+                </ul>
+            </nav>
+        </header>
+
+        <section id="projects-jp">
+            <h2 class="subtitle">注目プロジェクト</h2>
+            
+            <div class="projects-grid"> 
+                
+                <!-- Project 1 (JP) -->
+                <div class="card">
+                    <div class="card-image-container">
+                        <img src="https://gmtcjapan.com/bob0.png" alt="Bob0" onerror="this.src='https://placehold.co/600x400/1a1a1a/4ac5ff?text=Bob0+Robot'">
+                    </div>
+                    <div class="card-info">
+                        <span class="card-title">Bob0</span> 
+                        <p class="card-content">RCロボット。サイエンスアゴラ2025（国内最大級の科学イベント）にて展示。子供向けのワークショップを開催しました。</p> 
+                        <a href="#" class="see-more-btn">詳細を見る</a>
+                    </div>
+                </div>
+
+                <!-- Project 2 (JP) -->
+                <div class="card">
+                    <div class="card-image-container">
+                        <img src="robot2.jpg" alt="VRTX Drone" onerror="this.src='https://placehold.co/600x400/1a1a1a/4ac5ff?text=VRTX+Drone'">
+                    </div>
+                    <div class="card-info">
+                        <span class="card-title">VRTX</span>
+                        <p class="card-content">現在進行中：ESP32とAIコンピュータビジョンを使用した自律飛行AIドローンプロジェクト！</p>
+                        <a href="#" class="see-more-btn">詳細を見る</a>
+                    </div>
+                </div>
+
+                <!-- Project 3 (JP) -->
+                <div class="card">
+                    <div class="card-image-container">
+                        <img src="robot3.jpg" alt="Future Project" onerror="this.src='https://placehold.co/600x400/1a1a1a/4ac5ff?text=Coming+Soon'">
+                    </div>
+                    <div class="card-info">
+                        <span class="card-title">Next project!?</span>
+                        <p class="card-content"></p>
+                        <a href="#" class="see-more-btn">近日公開</a>
+                    </div>
+                </div>
+                
+            </div>
+        </section>
+
+        <footer>
+            <div class="social-links">
+                <a href="mailto:gmtcjapan@gmail.com">Eメール</a>
+                <a href="https://www.instagram.com/gmtcjapan/" target="_blank">インスタグラム</a>
+                <a href="https://x.com/GMTCJapan" target="_blank">X (ツイッター)</a>
+            </div>
+            <p>Arduinoと共にあらんことを。 &copy; 2025 GMTC Japan</p>
+        </footer>
+    </div>
+
+    <script>
+        // Language Switcher Logic
+        document.getElementById('switch-to-jp').addEventListener('click', function() {
+            document.getElementById('english-content').style.display = 'none';
+            document.getElementById('japanese-content').style.display = 'block';
+            window.scrollTo(0, 0);
+        });
+
+        document.getElementById('switch-to-en').addEventListener('click', function() {
+            document.getElementById('japanese-content').style.display = 'none';
+            document.getElementById('english-content').style.display = 'block';
+            window.scrollTo(0, 0);
+        });
+
+        // Hamburger Menu Logic
+        function setupHamburger(hamburgerId, menuId) {
+            const hamburger = document.getElementById(hamburgerId);
+            const navMenu = document.getElementById(menuId);
+            const navLinks = navMenu.querySelectorAll('.nav-link');
+
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                navMenu.classList.toggle('active');
+            });
+
+            // Close menu when a link is clicked
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    hamburger.classList.remove('active');
+                    navMenu.classList.remove('active');
+                });
+            });
+        }
+
+        setupHamburger('hamburger-en', 'nav-menu-en');
+        setupHamburger('hamburger-jp', 'nav-menu-jp');
+    </script>
+</body>
+</html>
