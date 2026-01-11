@@ -29,39 +29,96 @@
     <h2 class="subtitle">Featured Projects</h2>
     
     <div class="projects-grid"> 
-        
         <div class="card">
             <div class="card-image-container">
-                <img src="bob0.png" alt="Bob0" onerror="this.src='https://via.placeholder.com/300x200?text=Bob0+Image'">
+                <img src="bob0.png" alt="Bob0" id="img-bob0" onerror="this.src='https://via.placeholder.com/300x200?text=Bob0+Image'">
             </div>
             <div class="card-info">
-                <span class="card-title">Bob0</span> 
-                <p class="card-content">RC Robot; Presented at Science Agora 2025 (National Japanese exhibition)</p> 
-                <a href="#" class="see-more-btn">SEE MORE</a>
+                <span class="card-title" id="title-bob0">Bob0</span> 
+                <p class="card-content" id="desc-bob0">RC Robot; Presented at Science Agora 2025 (National Japanese exhibition)</p> 
+                <a href="javascript:void(0)" class="see-more-btn" onclick="openProject('bob0')">SEE MORE</a>
             </div>
         </div>
 
         <div class="card">
             <div class="card-image-container">
-                <img src="robot2.jpg" alt="C1C0 Robot" onerror="this.src='https://via.placeholder.com/300x200?text=C1C0+Robot'">
+                <img src="robot2.jpg" alt="VRTX" id="img-vrtx" onerror="this.src='https://via.placeholder.com/300x200?text=VRTX+Drone'">
             </div>
             <div class="card-info">
-                <span class="card-title">VRTX</span>
-                <p class="card-content">CURRENT PROJECT: AI Drone project using ESP32 and AI computer vision for autonomous flight!</p>
-                <a href="#" class="see-more-btn">SEE MORE</a>
+                <span class="card-title" id="title-vrtx">VRTX</span>
+                <p class="card-content" id="desc-vrtx">CURRENT PROJECT: AI Drone project using ESP32 and AI computer vision for autonomous flight!</p>
+                <a href="javascript:void(0)" class="see-more-btn" onclick="openProject('vrtx')">SEE MORE</a>
             </div>
         </div>
 
         <div class="card">
             <div class="card-image-container">
-                <img src="robot3.jpg" alt="nextrobot" onerror="this.src='https://via.placeholder.com/300x200?text=SpaceXRP+Robot'">
+                <img src="robot3.jpg" alt="nextrobot" id="img-next" onerror="this.src='https://via.placeholder.com/300x200?text=Coming+Soon'">
             </div>
             <div class="card-info">
-                <span class="card-title">Next project!?</span>
-                <p class="card-content">Coming soon...</p>
-                <a href="#" class="see-more-btn">SEE MORE</a>
+                <span class="card-title" id="title-next">Next project!?</span>
+                <p class="card-content" id="desc-next">Coming soon...</p>
+                <a href="javascript:void(0)" class="see-more-btn" onclick="openProject('next')">SEE MORE</a>
             </div>
         </div>
-        
     </div>
 </section>
+
+<div id="project-overlay" class="side-panel">
+    <span class="close-btn" onclick="closeProject()">&times;</span>
+    <img src="" id="panel-img" class="panel-main-img">
+    
+    <div class="panel-text">
+        <h2 id="panel-title"></h2>
+        <p id="panel-desc" class="panel-intro"></p>
+        <hr class="divider">
+        
+        <div id="dynamic-details">
+            </div>
+    </div>
+</div>
+
+<script>
+function openProject(projectId) {
+    const panel = document.getElementById("project-overlay");
+    
+    // 1. Get data from the card
+    const title = document.getElementById("title-" + projectId).innerText;
+    const desc = document.getElementById("desc-" + projectId).innerText;
+    const imgSrc = document.getElementById("img-" + projectId).src;
+    
+    // 2. Put data into the panel
+    document.getElementById("panel-title").innerText = title;
+    document.getElementById("panel-desc").innerText = desc;
+    document.getElementById("panel-img").src = imgSrc;
+    
+    // 3. Add specific tech details based on which project it is
+    let detailsHtml = "";
+    if(projectId === 'vrtx') {
+        detailsHtml = `
+            <h3>Technical Stack</h3>
+            <div class="tech-grid">
+                <div class="tech-item"><strong>MCU</strong><span>ESP32-WROOM</span></div>
+                <div class="tech-item"><strong>Sensors</strong><span>MPU6050, Ultrasonic</span></div>
+                <div class="tech-item"><strong>Status</strong><span>Active Development</span></div>
+            </div>`;
+    } else if (projectId === 'bob0') {
+        detailsHtml = `
+            <h3>Event Detail</h3>
+            <p>Presented to 600+ visitors at Science Agora 2025. Focused on bio-inspired movement.</p>
+            <div class="tech-grid">
+                <div class="tech-item"><strong>Platform</strong><span>Arduino Mega</span></div>
+                <div class="tech-item"><strong>Features</strong><span>Wireless Control</span></div>
+            </div>`;
+    }
+    
+    document.getElementById("dynamic-details").innerHTML = detailsHtml;
+    
+    // 4. Slide the panel in
+    panel.style.width = "60vw";
+}
+
+function closeProject() {
+    document.getElementById("project-overlay").style.width = "0";
+}
+</script>
