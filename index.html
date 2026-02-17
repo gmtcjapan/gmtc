@@ -559,7 +559,7 @@
                 font-size: 3rem; 
                 line-height: 1.2;
             }
-            /* --- STATS BOXES --- */
+          /* --- STATS BOXES --- */
 .stats-container {
     display: flex;
     justify-content: center;
@@ -568,7 +568,16 @@
     flex-wrap: wrap;     /* 画面が狭い時に折り返す */
 }
 
-
+.stat-box {
+    background: rgba(5, 7, 10, 0.6); /* 半透明の背景 */
+    border: 1px solid var(--primary-color); /* 水色の枠線 */
+    padding: 2rem 3rem;
+    min-width: 220px;    /* 箱の最小幅 */
+    text-align: center;
+    position: relative;
+    transition: 0.3s;
+    box-shadow: 0 0 10px rgba(74, 197, 255, 0.1); /* ほんのり光らせる */
+}
 
 .stat-box:hover {
     background: rgba(74, 197, 255, 0.1); /* ホバー時に少し明るく */
@@ -613,7 +622,6 @@
     text-transform: uppercase; /* すべて大文字に */
     letter-spacing: 2px;
 }
-
             /* Standard padding adjustments */
             section { padding: 4rem 1rem; }
             .projects-grid, .team-grid { grid-template-columns: 1fr; }
