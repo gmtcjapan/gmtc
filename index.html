@@ -559,6 +559,60 @@
                 font-size: 3rem; 
                 line-height: 1.2;
             }
+            /* --- STATS BOXES --- */
+.stats-container {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;           /* 箱同士の間隔 */
+    margin-top: 4rem;    /* 上のボタンとの間隔 */
+    flex-wrap: wrap;     /* 画面が狭い時に折り返す */
+}
+
+
+
+.stat-box:hover {
+    background: rgba(74, 197, 255, 0.1); /* ホバー時に少し明るく */
+    box-shadow: 0 0 20px rgba(74, 197, 255, 0.4);
+    transform: translateY(-5px);
+}
+
+/* 四角いデザインを強調するための装飾（四隅のデザイン） */
+.stat-box::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 10px; height: 10px;
+    border-top: 2px solid #fff;
+    border-left: 2px solid #fff;
+}
+.stat-box::after {
+    content: '';
+    position: absolute;
+    bottom: 0; right: 0;
+    width: 10px; height: 10px;
+    border-bottom: 2px solid #fff;
+    border-right: 2px solid #fff;
+}
+
+.stat-number {
+    display: block;
+    font-family: var(--font-display); /* Orbitronフォント */
+    font-size: 4rem;     /* 数字を大きく */
+    font-weight: 700;
+    color: var(--primary-color);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 15px rgba(74, 197, 255, 0.5);
+}
+
+.stat-label {
+    display: block;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: #fff;
+    text-transform: uppercase; /* すべて大文字に */
+    letter-spacing: 2px;
+}
 
             /* Standard padding adjustments */
             section { padding: 4rem 1rem; }
@@ -643,7 +697,16 @@
                     </div>
                 </div>
             </section>
-
+            <div class="stats-container">
+              <div class="stat-box">
+                 <span class="stat-number">4</span>
+                <span class="stat-label">Schools Reached</span>
+             </div>
+            <div class="stat-box">
+        <span class="stat-number">8</span>
+        <span class="stat-label">Members</span>
+          </div>
+        </div>
             <!-- 3. WHAT WE DO (Projects) -->
             <section id="projects-en">
                 <h2>What We Do</h2>
@@ -802,7 +865,16 @@
                     </div>
                 </div>
             </section>
-
+<div class="stats-container">
+    <div class="stat-box">
+        <span class="stat-number">4</span>
+        <span class="stat-label">Schools Reached</span>
+    </div>
+    <div class="stat-box">
+        <span class="stat-number">8</span>
+        <span class="stat-label">Members</span>
+    </div>
+</div>
             <!-- 3. WHAT WE DO (Japanese Section) -->
             <section id="projects-jp">
                 <h2>活動内容</h2>
