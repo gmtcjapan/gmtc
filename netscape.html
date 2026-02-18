@@ -320,16 +320,26 @@
             </font>
         </center>
 
-    </div></div><div id="secret-overlay" style="
+    </div></div>
+   <!-- ===== Secret Desktop Overlay ===== -->
+<div id="secret-overlay" style="
 display:none;
 position:fixed;
 inset:0;
-background:black;
 z-index:20000;
 ">
 
-    <div style="position:absolute; inset:0; width:100%; height:100%; background:#008080;"></div>
+    <!-- Windows Desktop Image -->
+    <img src="https://ryumacv.neocities.org/random%20pgoto/Screenshot%202026-02-18%20214516.png"
+         style="
+         position:absolute;
+         inset:0;
+         width:100%;
+         height:100%;
+         object-fit:cover;
+         ">
 
+    <!-- Center Dialog -->
     <div id="secret-popup" class="win95-dialog outset"
          style="
          position:absolute;
@@ -337,12 +347,27 @@ z-index:20000;
          left:50%;
          transform:translate(-50%,-50%);
          display:none;
-         width:320px;
+         width:360px;
          ">
         <div class="title-bar">
             <span>Netscape Navigator</span>
             <span class="close-btn" onclick="goBack()">x</span>
         </div>
+
+        <div class="dialog-content">
+            <p><b>Would you like to...</b></p>
+            <br>
+            <button class="win-btn" onclick="goBack()">
+                Go Back to GMTC Homepage
+            </button>
+            <button class="win-btn" onclick="stayHere()">
+                Continue staring at Ryuma's Windows Desktop
+            </button>
+        </div>
+    </div>
+
+</div>
+
 
         <div class="dialog-content">
             <img src="https://github.com/gmtcjapan/gmtc/blob/main/gmtclogo.png?raw=true" width="32" height="32" style="float:left; margin-right:10px;">
@@ -411,14 +436,17 @@ function openMenu(name) {
 function closeMenuPop() {
     document.getElementById('menu-pop-overlay').style.display = "none";
 }
-
-/* ===== Secret Desktop ===== */
 function triggerSecret() {
     const overlay = document.getElementById("secret-overlay");
     const popup = document.getElementById("secret-popup");
+    const netscape = document.querySelector(".netscape-window");
+
+    // Netscapeウィンドウを消す（本当に閉じた感）
+    netscape.style.display = "none";
 
     overlay.style.display = "block";
 
+    // 1秒後に中央ダイアログ表示
     setTimeout(() => {
         popup.style.display = "flex";
     }, 1000);
@@ -427,11 +455,14 @@ function triggerSecret() {
 function goBack() {
     document.getElementById("secret-overlay").style.display = "none";
     document.getElementById("secret-popup").style.display = "none";
+    document.querySelector(".netscape-window").style.display = "flex";
 }
 
 function stayHere() {
     document.getElementById("secret-popup").style.display = "none";
 }
+
+
 </script>
 
 </body>
