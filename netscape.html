@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>GMTC Japan - Netscape Version</title>
+<style>
+    /* ==============================
+       SYSTEM / WINDOW STYLES (Win95 Theme)
+       ============================== */
+    body {
+        background-color: #008080; /* Classic Teal Desktop */
+        margin: 0;
+        padding: 20px;
+        font-family: "MS Sans Serif", Arial, sans-serif;
+        height: 100vh;
+        box-sizing: border-box;
+        overflow: hidden; /* Prevent body scroll, handle inside window */
+    }
+
+    /* The Main Netscape Window Container */
+    .netscape-window {
+        background-color: #c0c0c0; /* Windows Grey */
+        border: 2px solid #dfdfdf;
+        border-right-color: #000;
+        border-bottom-color: #000;
+        display: flex;
+        flex-direction: column;
+        height: 90vh; /* Window height */
+        box-shadow: 4px 4px 10px rgba(0,0,0,0.5);
+        max-width: 1024px;
+        margin: 0 auto;
+    }
+
+    /* Outset Border Effect */
+    .outset {
+        border-top: 2px solid #fff;
+        border-left: 2px solid #fff;
+        border-right: 2px solid #808080;
+        border-bottom: 2px solid #808080;
+    }
+
+    /* Inset Border Effect (for viewport) */
+    .inset {
+        border-top: 2px solid #808080;
+        border-left: 2px solid #808080;
+        border-right: 2px solid #fff;
+        border-bottom: 2px solid #fff;
+    }
+
+    /* Title Bar */
+    .title-bar {
+        background-color: #000080; /* Active Title Blue */
+        color: white;
+        padding: 4px;
+        font-weight: bold;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 14px;
+        font-family: Arial, sans-serif;
+    }
+
+    .close-btn {
+        background: #c0c0c0;
+        border: 1px solid #fff;
+        border-right-color: #404040;
+        border-bottom-color: #404040;
+        width: 16px;
+        height: 14px;
+        font-size: 10px;
+        line-height: 12px;
+        text-align: center;
+        cursor: pointer;
+        color: black;
+        margin-left: 2px;
+        font-family: sans-serif;
+    }
+    .close-btn:active {
+        border: 1px solid #404040;
+        border-right-color: #fff;
+        border-bottom-color: #fff;
+    }
+
+    /* Menu Bar */
+    .menu-bar {
+        padding: 2px 5px;
+        display: flex;
+        gap: 15px;
+        font-size: 14px;
+        border-bottom: 1px solid #808080;
+        margin-bottom: 2px;
+    }
+    .menu-item {
+        cursor: pointer;
+    }
+    .menu-item:hover {
+        background-color: #000080;
+        color: white;
+    }
+    .menu-item span { text-decoration: underline; }
+
+    /* Netscape Toolbar Logo Area (Optional decoration) */
+    .brand-area {
+        padding: 10px;
+        border-bottom: 1px solid #808080;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+    }
+    .netscape-logo-box {
+        background: #000;
+        color: #00ff00;
+        font-family: monospace;
+        padding: 5px;
+        font-size: 20px;
+        border: 2px inset white;
+        animation: pulse 2s infinite;
+    }
+    @keyframes pulse { 0% { opacity: 0.8; } 50% { opacity: 1; } 100% { opacity: 0.8; } }
+
+    /* Browser Viewport (The "White" Part) */
+    .browser-viewport {
+        background-color: #fff;
+        flex-grow: 1;
+        overflow-y: scroll;
+        padding: 20px;
+        font-family: "Times New Roman", serif; /* Retro Font */
+        color: #000;
+    }
+
+    /* ==============================
+       RETRO CONTENT STYLES (Inside Viewport)
+       ============================== */
+    h1 { font-size: 32px; margin-bottom: 5px; text-align: center; }
+    h2 { font-size: 24px; border-bottom: 2px solid #000; padding-bottom: 5px; margin-top: 30px; }
+    p { font-size: 16px; line-height: 1.5; }
+    
+    a { color: #0000FF; text-decoration: underline; }
+    a:visited { color: #800080; }
+    a:active { color: #FF0000; }
+
+    .center-text { text-align: center; }
+    
+    /* Retro Tables for Layout */
+    table.retro-layout {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+    }
+    table.retro-layout td {
+        border: 1px solid #000;
+        padding: 10px;
+        vertical-align: top;
+    }
+    
+    /* Images */
+    .img-border {
+        border: 2px solid #000;
+        display: block;
+        margin: 10px auto;
+        max-width: 100%;
+    }
+
+    /* Retro Button */
+    .retro-btn {
+        background: #c0c0c0;
+        border: 2px outset #fff;
+        padding: 5px 15px;
+        color: black;
+        text-decoration: none;
+        font-family: "MS Sans Serif", Arial, sans-serif;
+        font-size: 13px;
+        cursor: pointer;
+    }
+    .retro-btn:active { border-style: inset; }
+
+    hr { border: 0; border-top: 2px solid #808080; border-bottom: 2px solid #fff; margin: 20px 0; }
+
+    /* ==============================
+       DIALOGS & POPUPS (Provided CSS)
+       ============================== */
+    .win-btn {
+        background: #c0c0c0;
+        border: 2px outset #fff;
+        padding: 4px 12px;
+        font-family: "MS Sans Serif", sans-serif;
+        font-size: 12px;
+        min-width: 70px;
+        margin: 0 5px;
+        cursor: pointer;
+    }
+    .win-btn:active { border-style: inset; }
+    
+    .win95-dialog {
+        background: #c0c0c0;
+        box-shadow: 4px 4px 10px rgba(0,0,0,0.5);
+    }
+    .dialog-content { padding: 15px; text-align: center; }
+
+</style>
+</head>
+<body>
+
+<div class="netscape-window outset">
+
+    <div class="title-bar">
+        <span>Netscape - [GMTC JAPAN Home Page]</span>
+        <div style="display:flex; gap:2px;">
+            <span class="close-btn" onclick="triggerSecret()">_</span>
+            <span class="close-btn" onclick="triggerSecret()">x</span>
+        </div>
+    </div>
+
+    <div class="menu-bar" role="menubar">
+        <div class="menu-item" onclick="openMenu('file')"><span>F</span>ile</div>
+        <div class="menu-item" onclick="openMenu('go')"><span>G</span>o</div>
+        <div class="menu-item" onclick="openMenu('window')"><span>W</span>indow</div>
+        <div class="menu-item" onclick="openMenu('help')"><span>H</span>elp</div>
+    </div>
+
+    <div style="background:#c0c0c0; padding:4px; border-bottom:1px solid #808080; display:flex; gap:5px; align-items:center;">
+        <span style="font-size:12px;">Location:</span>
+        <input type="text" value="http://www.gmtcjapan.com/" style="width:300px; font-family:'Courier New'; border:2px inset #fff;">
+        <div style="flex-grow:1;"></div>
+        <div style="border:2px inset gray; background:black; padding:2px;">
+            <span style="color:#4ac5ff; font-weight:bold; font-family:monospace;">N</span>
+        </div>
+    </div>
+
+    <div class="browser-viewport inset">
+        
+        <div class="center-text">
+            <img src="https://github.com/gmtcjapan/gmtc/blob/main/gmtclogo.png?raw=true" alt="GMTC Logo" width="100" height="100">
+            <h1>GMTC JAPAN</h1>
+            <p><i>Teens x Innovation</i></p>
+            <p><marquee scrollamount="5" width="80%">Welcome to the GMTC Makerspace Homepage!</marquee></p>
+            <hr>
+        </div>
+
+        <a name="about"></a>
+        <h2>Who We Are</h2>
+        <p>
+            <b>GMTC Japan</b> is a student-led project team focused on designing and building robots. 
+            We develop real-world technology that challenges convention and showcases the future of engineering.
+        </p>
+        <p>
+            Having personally faced the STEM opportunity gap, we are also dedicated to helping other students overcome these barriers. 
+            That is why we actively host STEM workshops for younger generations, ensuring that the tools of creation are within everyone's reach.
+        </p>
+        
+        <table border="1" cellpadding="5" width="50%" align="center" bgcolor="#FFFFCC">
+            <tr>
+                <td align="center"><b>Schools Reached</b></td>
+                <td align="center"><b>Members</b></td>
+            </tr>
+            <tr>
+                <td align="center"><font size="+2">4</font></td>
+                <td align="center"><font size="+2">8</font></td>
+            </tr>
+        </table>
+
+        <a name="projects"></a>
+        <h2>What We Do</h2>
+        <p>We design, we engineer, and we inspire.</p>
+
+        <table class="retro-layout">
+            <tr>
+                <td width="33%">
+                    <img src="https://gmtcjapan.com/bob0.png" alt="Bob0 Robot" width="100%" class="img-border">
+                    <center><b>Science Agora 2025</b></center>
+                    <p>Selected to present at a National Exhibition in Japan. Showcased Bob0, our first RC robot design.</p>
+                    <center><a href="https://gmtcjapan.com/scienceAgora2025.html">[View Project]</a></center>
+                </td>
+                <td width="33%">
+                    <center><h3>Project: Galaxydestroyer</h3></center>
+                    <p>Building AI drone with esp32 cam. Currently in progress.</p>
+                    <center><i>Coming Soon...</i></center>
+                </td>
+                <td width="33%">
+                    <center><h3>Rongo Programming</h3></center>
+                    <p>Writing code in the style of the Confucian Analects. A humorous take on "Logical Programming".</p>
+                    <center><i>In Prep</i></center>
+                </td>
+            </tr>
+        </table>
+        
+        <br>
+        <center>
+            <button class="retro-btn" onclick="alert('Navigating to Archives...')">View Project Archive</button>
+        </center>
+
+        <a name="team"></a>
+        <h2>Our Members</h2>
+        <ul>
+            <li><b>Hanano Suzuki</b> - Co-founder (HTML/CSS)</li>
+            <li><b>Ryuma Kojima</b> - Co-founder (C++/Hardware) - <a href="https://ryumacv.neocities.org/" target="_blank">Portfolio</a></li>
+            <li><b>Maria Fujisawa</b> - Co-founder (HTML/CSS/3D Printing) - <a href="http://www.mariafujisawa.com/" target="_blank">Portfolio</a></li>
+            <li><b>Junji Ogawa</b> - Member</li>
+            <li><b>Honoka</b> - Member</li>
+        </ul>
+
+        <a name="join"></a>
+        <hr>
+        <div class="center-text" style="background-color: #e0e0e0; padding: 20px; border: 2px outset white;">
+            <h2>Join The Crew</h2>
+            <p>Open to any innovators (preferably based in the Kanto region).</p>
+            <img src="https://github.com/gmtcjapan/gmtc/blob/main/gmtccharacter.png?raw=true" alt="Mascot" width="80">
+            <br><br>
+            <a href="https://jp.surveymonkey.com/r/5L5MP86" target="_blank" class="retro-btn">Enlist Now</a>
+        </div>
+
+        <br><br>
+        <center>
+            <font size="-1">
+                Contact: <a href="mailto:gmtcjapan@gmail.com">gmtcjapan@gmail.com</a> | 
+                <a href="https://www.instagram.com/gmtcjapan/">Instagram</a> | 
+                <a href="https://x.com/GMTCJapan">X (Twitter)</a>
+                <br>
+                &copy; 2024 GMTC Japan. Best viewed with Netscape Navigator 3.0
+            </font>
+        </center>
+
+    </div></div><div id="secret-overlay" style="
+display:none;
+position:fixed;
+inset:0;
+background:black;
+z-index:20000;
+">
+
+    <div style="position:absolute; inset:0; width:100%; height:100%; background:#008080;"></div>
+
+    <div id="secret-popup" class="win95-dialog outset"
+         style="
+         position:absolute;
+         top:50%;
+         left:50%;
+         transform:translate(-50%,-50%);
+         display:none;
+         width:320px;
+         ">
+        <div class="title-bar">
+            <span>Netscape Navigator</span>
+            <span class="close-btn" onclick="goBack()">x</span>
+        </div>
+
+        <div class="dialog-content">
+            <img src="https://github.com/gmtcjapan/gmtc/blob/main/gmtclogo.png?raw=true" width="32" height="32" style="float:left; margin-right:10px;">
+            <p><b>Would you like to close GMTC Netscape?</b></p>
+            <br style="clear:both;">
+            <div style="margin-top:10px;">
+                <button class="win-btn" onclick="goBack()">
+                    Go back
+                </button>
+                <button class="win-btn" onclick="stayHere()">
+                    Stay here
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="menu-pop-overlay" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.35); z-index:10000; justify-content:center; align-items:center;">
+    <div class="win95-dialog outset" style="width:360px; max-width:90%;">
+        <div class="title-bar">
+            <span id="menu-pop-title">Menu</span>
+            <span class="close-btn" onclick="closeMenuPop()">x</span>
+        </div>
+        <div class="dialog-content" id="menu-pop-content"></div>
+        <div style="display:flex; justify-content:center; padding:10px;">
+            <button class="win-btn" onclick="closeMenuPop()">Close</button>
+        </div>
+    </div>
+</div>
+
+<script>
+const GO_URL = "https://en.wikipedia.org/wiki/Go_(programming_language)";
+const WINDOW_URL = "https://www.youtube.com/watch?v=4MpPGb_apD8";
+
+/* ===== Menu ===== */
+function openMenu(name) {
+    const overlay = document.getElementById('menu-pop-overlay');
+    const title = document.getElementById('menu-pop-title');
+    const content = document.getElementById('menu-pop-content');
+    content.innerHTML = "";
+
+    if (name === 'file') {
+        title.textContent = "File";
+        content.innerHTML = "<p><strong>What file?</strong></p><p>This page is index.html</p>";
+    }
+    if (name === 'go') {
+        title.textContent = "Go";
+        content.innerHTML =
+            "<p>Open Go language page?</p>" +
+            "<button class='win-btn' onclick=\"window.open('" + GO_URL + "','_blank');closeMenuPop();\">Open</button>";
+    }
+    if (name === 'window') {
+        title.textContent = "Window";
+        content.innerHTML =
+            "<p>Open video?</p>" +
+            "<button class='win-btn' onclick=\"window.open('" + WINDOW_URL + "','_blank');closeMenuPop();\">Open</button>";
+    }
+    if (name === 'help') {
+        title.textContent = "Help";
+        content.innerHTML = "<p><strong>I need help too.</strong></p><p>Contact: gmtcjapan@gmail.com</p>";
+    }
+
+    overlay.style.display = "flex";
+}
+
+function closeMenuPop() {
+    document.getElementById('menu-pop-overlay').style.display = "none";
+}
+
+/* ===== Secret Desktop ===== */
+function triggerSecret() {
+    const overlay = document.getElementById("secret-overlay");
+    const popup = document.getElementById("secret-popup");
+
+    overlay.style.display = "block";
+
+    setTimeout(() => {
+        popup.style.display = "flex";
+    }, 1000);
+}
+
+function goBack() {
+    document.getElementById("secret-overlay").style.display = "none";
+    document.getElementById("secret-popup").style.display = "none";
+}
+
+function stayHere() {
+    document.getElementById("secret-popup").style.display = "none";
+}
+</script>
+
+</body>
+</html>
