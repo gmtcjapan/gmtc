@@ -645,10 +645,10 @@
                 <div class="glitch" data-glitch="GMTC">GMTC</div>
             </div>
             <p style="color: var(--primary-color); font-family: var(--font-display);">// INITIATING CONNECTION...</p>
-            <div class="language-selector">
-                <button id="lang-en" class="btn">ENGLISH</button>
-                <button id="lang-jp" class="btn">日本語</button>
-            </div>
+           <div class="language-selector">
+    <button id="lang-netscape" class="btn">NETSCAPE</button> <button id="lang-en" class="btn">ENGLISH</button>
+    <button id="lang-jp" class="btn">日本語</button>
+</div>
         </div>
     </div>
 
@@ -991,6 +991,13 @@
             document.getElementById('loader').style.display = 'none';
             document.getElementById('english-content').style.display = 'block';
         });
+        // index.html の末尾にあるスクリプト部分を修正
+// Initial Loader Logic
+document.getElementById('lang-netscape').addEventListener('click', function() {
+    window.location.href = 'netscape.html'; // ページを切り替える
+});
+
+
 
         document.getElementById('lang-jp').addEventListener('click', function() {
             document.getElementById('loader').style.display = 'none';
